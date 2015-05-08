@@ -50,16 +50,17 @@ public class FBF {
 			else if(c==')'){
 				parentAbierto--;				
 			}
-			else if(c=='|' && parentAbierto == 0){
+			else if(c=='∨' && parentAbierto == 0){
 				posicionOR = i;
 			}
-			else if(c=='&' && parentAbierto == 0){
+			else if(c=='∧' && parentAbierto == 0){
 				posicionAND = i;
 			}
-			else if(c=='!' && parentAbierto == 0){
+			else if(c=='⊢' && parentAbierto == 0){
 				posicionNOT = i;
-			}			
-		}
+			}
+                            
+                }
 		if(parentAbierto != 0){
 			throw new ExcepcionLogica();			
 		}
