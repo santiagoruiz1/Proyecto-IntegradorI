@@ -103,14 +103,8 @@ public class Logic extends javax.swing.JFrame {
         // TODO add your handling code here:
         String expresion = textExpre1.getText();
         
-        try {
-            if(expresion.length()==1){
-                FBF f = new FBF(expresion.charAt(0));
-                System.out.println("op:" + f.getOperador());
-            }else{
-                FBF f = new FBF(expresion);
-                System.out.println("izq:" + f.getFbfI().getOperador() + "der: " + f.getFbfD().getOperador() + "op:" + f.getOperador());
-            }
+        try {            
+            FBF f = new FBF(expresion);                
             textExpre1.setBackground(Color.GREEN);
         } catch (Exception e) {
             textExpre1.setBackground(Color.red);

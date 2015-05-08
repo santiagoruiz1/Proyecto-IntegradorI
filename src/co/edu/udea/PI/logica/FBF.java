@@ -26,12 +26,20 @@ public class FBF {
 	
 	//Constructor para expresion compuesta
 	public FBF(String expresion) throws Exception{
-				
+            				
 		int parentAbierto = 0;
 		int posicionOR = -1;
 		int posicionAND = -1;
 		int posicionNOT = -1;
-		
+                
+		if(expresion.length()==1 ){
+			FBF aux = new FBF(expresion.charAt(0));
+                        operador = aux.getOperador();
+                        fbfI = aux.getFbfI();
+                        fbfD = aux.getFbfD();
+                        esAtomo = aux.getEsAtomo();
+                        return;
+		}
 				
 		for (int i = 0; i < expresion.length(); i++) {
 			

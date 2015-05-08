@@ -8,7 +8,7 @@ public class ExcepcionLogica extends Exception{
 	
 	public ExcepcionLogica(){
 		super("Error en la expresion");
-                JOptionPane.showMessageDialog(null,
-                "Error en la expresion");
+                //JOptionPane.showMessageDialog(null,
+                //"Error en la expresion");
 	}
 }
