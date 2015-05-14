@@ -20,6 +20,14 @@ public class Logic extends javax.swing.JFrame {
      */
     public Logic() {
         initComponents();
+        btnAbrePar.setFocusable(false);
+        btnCierraPar.setFocusable(false);
+        btnConj.setFocusable(false);
+        btnDisy.setFocusable(false);
+        btnFlecha.setFocusable(false);
+        btnFlechaBi.setFocusable(false);
+        btnNegacion.setFocusable(false);
+        botonValidar.setFocusable(false);
     }
     
     /**
