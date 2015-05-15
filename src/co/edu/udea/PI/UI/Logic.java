@@ -51,6 +51,7 @@ public class Logic extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         botonValidar.setText("Validar");
+        botonValidar.setFocusable(false);
         botonValidar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonValidarActionPerformed(evt);
@@ -58,6 +59,7 @@ public class Logic extends javax.swing.JFrame {
         });
 
         botonComprobar.setText("Comprobar");
+        botonComprobar.setFocusable(false);
         botonComprobar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonComprobarActionPerformed(evt);
@@ -69,6 +71,7 @@ public class Logic extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnNegacion.setText("⊢");
+        btnNegacion.setFocusable(false);
         btnNegacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNegacionActionPerformed(evt);
@@ -76,6 +79,7 @@ public class Logic extends javax.swing.JFrame {
         });
 
         btnAbrePar.setText("(");
+        btnAbrePar.setFocusable(false);
         btnAbrePar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAbreParActionPerformed(evt);
@@ -83,6 +87,7 @@ public class Logic extends javax.swing.JFrame {
         });
 
         btnCierraPar.setText(")");
+        btnCierraPar.setFocusable(false);
         btnCierraPar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCierraParActionPerformed(evt);
@@ -90,6 +95,7 @@ public class Logic extends javax.swing.JFrame {
         });
 
         btnFlecha.setText("→");
+        btnFlecha.setFocusable(false);
         btnFlecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFlechaActionPerformed(evt);
@@ -97,6 +103,7 @@ public class Logic extends javax.swing.JFrame {
         });
 
         btnFlechaBi.setText("↔");
+        btnFlechaBi.setFocusable(false);
         btnFlechaBi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFlechaBiActionPerformed(evt);
@@ -104,6 +111,7 @@ public class Logic extends javax.swing.JFrame {
         });
 
         btnDisy.setText("∨");
+        btnDisy.setFocusable(false);
         btnDisy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDisyActionPerformed(evt);
@@ -111,6 +119,7 @@ public class Logic extends javax.swing.JFrame {
         });
 
         btnConj.setText("∧");
+        btnConj.setFocusable(false);
         btnConj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConjActionPerformed(evt);
@@ -191,9 +200,8 @@ public class Logic extends javax.swing.JFrame {
                         .addComponent(textExpre1)
                         .addGap(2, 2, 2))
                     .addComponent(botonValidar, javax.swing.GroupLayout.Alignment.LEADING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textExpre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonComprobar))
@@ -243,51 +251,67 @@ public class Logic extends javax.swing.JFrame {
 
     private void btnNegacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNegacionActionPerformed
 
+        int pos = textExpre1.getCaretPosition();
         String texto = textExpre1.getText();
-        texto = texto + '⊢';
+        texto = texto.substring(0, pos) + '⊢' + texto.substring(pos, texto.length());
         textExpre1.setText(texto);
+        textExpre1.setCaretPosition(pos+1);
+        
     }//GEN-LAST:event_btnNegacionActionPerformed
 
     private void btnAbreParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbreParActionPerformed
 
+        int pos = textExpre1.getCaretPosition();
         String texto = textExpre1.getText();
-        texto = texto + '(';
+        texto = texto.substring(0, pos) + '('+ texto.substring(pos, texto.length());
         textExpre1.setText(texto);
+        textExpre1.setCaretPosition(pos+1);
+       
     }//GEN-LAST:event_btnAbreParActionPerformed
 
     private void btnCierraParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCierraParActionPerformed
         
+        int pos = textExpre1.getCaretPosition();
         String texto = textExpre1.getText();
-        texto = texto + ')';
+        texto = texto.substring(0, pos) + ')'+ texto.substring(pos, texto.length());
         textExpre1.setText(texto);
+        textExpre1.setCaretPosition(pos+1);
     }//GEN-LAST:event_btnCierraParActionPerformed
 
     private void btnFlechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFlechaActionPerformed
         
+        int pos = textExpre1.getCaretPosition();
         String texto = textExpre1.getText();
-        texto = texto + '→';
+        texto = texto.substring(0, pos) + '→'+ texto.substring(pos, texto.length());
         textExpre1.setText(texto);
+        textExpre1.setCaretPosition(pos+1);
     }//GEN-LAST:event_btnFlechaActionPerformed
 
     private void btnFlechaBiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFlechaBiActionPerformed
         
+        int pos = textExpre1.getCaretPosition();
         String texto = textExpre1.getText();
-        texto = texto + '↔';
+        texto = texto.substring(0, pos) + '↔'+ texto.substring(pos, texto.length());
         textExpre1.setText(texto);
+        textExpre1.setCaretPosition(pos+1);
     }//GEN-LAST:event_btnFlechaBiActionPerformed
 
     private void btnDisyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisyActionPerformed
         
+        int pos = textExpre1.getCaretPosition();
         String texto = textExpre1.getText();
-        texto = texto + '∨';
+        texto = texto.substring(0, pos) + '∨'+ texto.substring(pos, texto.length());
         textExpre1.setText(texto);
+        textExpre1.setCaretPosition(pos+1);
     }//GEN-LAST:event_btnDisyActionPerformed
 
     private void btnConjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConjActionPerformed
         
+        int pos = textExpre1.getCaretPosition();
         String texto = textExpre1.getText();
-        texto = texto + '∧';
+        texto = texto.substring(0, pos) + '∧'+ texto.substring(pos, texto.length());
         textExpre1.setText(texto);
+        textExpre1.setCaretPosition(pos+1);
     }//GEN-LAST:event_btnConjActionPerformed
     
     /**

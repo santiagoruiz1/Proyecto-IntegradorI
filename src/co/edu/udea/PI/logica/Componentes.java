@@ -10,7 +10,7 @@ public class Componentes {
 	public Componentes() {
 		
 		Character []alf = {'p','q','r','s','t'};  			//Operadores permitidos
-		Character []ops = {'|','&','!'};     //Atomos permitidos 
+		Character []ops = {'∨','∧','⊢','→','↔'};     //Atomos permitidos 
 		
 		for (int i=0;i<ops.length;i++) {
 			operadores.add(ops[i]);

@@ -31,6 +31,8 @@ public class FBF {
 		int posicionOR = -1;
 		int posicionAND = -1;
 		int posicionNOT = -1;
+                int posicionFlecha = -1;
+                int posicionFlechaBi = -1;
                 
 		if(expresion.length()==1 ){
 			FBF aux = new FBF(expresion.charAt(0));
@@ -50,6 +52,12 @@ public class FBF {
 			else if(c==')'){
 				parentAbierto--;				
 			}
+                        else if(c=='↔'){
+				posicionFlechaBi = i;				
+			}
+                        else if(c=='→'){
+				posicionFlecha = i;				
+			}
 			else if(c=='∨' && parentAbierto == 0){
 				posicionOR = i;
 			}
@@ -59,11 +67,50 @@ public class FBF {
 			else if(c=='⊢' && parentAbierto == 0){
 				posicionNOT = i;
 			}
+                        
                             
                 }
 		if(parentAbierto != 0){
 			throw new ExcepcionLogica();			
 		}
+                else if(posicionFlechaBi != -1){
+			operador = expresion.charAt(posicionFlechaBi);
+			String eI = expresion.substring(0, posicionFlechaBi );
+			String eD = expresion.substring(posicionFlechaBi +1, expresion.length());
+			if(eI.length()==1){
+				fbfI = new FBF(eI.charAt(0)); 
+			}else{
+				fbfI = new FBF(eI);
+			}
+			
+			if(eD.length()==1){
+				fbfD = new FBF(eD.charAt(0)); 
+			}else{
+				fbfD = new FBF(eD);
+			}
+			return;
+			
+		}
+                
+                else if(posicionFlecha != -1){
+			operador = expresion.charAt(posicionFlecha);
+			String eI = expresion.substring(0, posicionFlecha );
+			String eD = expresion.substring(posicionFlecha +1, expresion.length());
+			if(eI.length()==1){
+				fbfI = new FBF(eI.charAt(0)); 
+			}else{
+				fbfI = new FBF(eI);
+			}
+			
+			if(eD.length()==1){
+				fbfD = new FBF(eD.charAt(0)); 
+			}else{
+				fbfD = new FBF(eD);
+			}
+			return;
+			
+		}
+                
 		else if(posicionOR != -1){
 			operador = expresion.charAt(posicionOR);
 			String eI = expresion.substring(0, posicionOR );

@@ -72,9 +72,8 @@
                   </Group>
                   <Component id="botonValidar" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" pref="103" max="-2" attributes="0"/>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace pref="54" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="textExpre2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonComprobar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -90,6 +89,7 @@
     <Component class="javax.swing.JButton" name="botonValidar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Validar"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonValidarActionPerformed"/>
@@ -102,6 +102,7 @@
     <Component class="javax.swing.JButton" name="botonComprobar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Comprobar"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonComprobarActionPerformed"/>
@@ -174,6 +175,7 @@
         <Component class="javax.swing.JButton" name="btnNegacion">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x22a2;"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNegacionActionPerformed"/>
@@ -182,6 +184,7 @@
         <Component class="javax.swing.JButton" name="btnAbrePar">
           <Properties>
             <Property name="text" type="java.lang.String" value="("/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAbreParActionPerformed"/>
@@ -190,6 +193,7 @@
         <Component class="javax.swing.JButton" name="btnCierraPar">
           <Properties>
             <Property name="text" type="java.lang.String" value=")"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCierraParActionPerformed"/>
@@ -198,6 +202,7 @@
         <Component class="javax.swing.JButton" name="btnFlecha">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x2192;"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFlechaActionPerformed"/>
@@ -206,6 +211,7 @@
         <Component class="javax.swing.JButton" name="btnFlechaBi">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x2194;"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFlechaBiActionPerformed"/>
@@ -214,6 +220,7 @@
         <Component class="javax.swing.JButton" name="btnDisy">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x2228;"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDisyActionPerformed"/>
@@ -222,6 +229,7 @@
         <Component class="javax.swing.JButton" name="btnConj">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x2227;"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConjActionPerformed"/>
