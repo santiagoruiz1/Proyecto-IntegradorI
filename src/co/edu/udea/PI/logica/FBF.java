@@ -2,27 +2,25 @@ package co.edu.udea.PI.logica;
 
 public class FBF {
 	
-	private Character operador; 	//operador de la fbf
-	private FBF fbfI;				//operandos de la fbf
+	private Character operador; 	//Operador de la fbf
+	private FBF fbfI;		//Operandos de la fbf
 	private FBF fbfD;
 	private Boolean esAtomo;	
 	
-	//componentes que pueden ser utilizados para la formacion de una expresion logica
+	//Componentes que pueden ser utilizados para la formacion de una expresion logica
 	private Componentes comp = new Componentes();	
 		
 	//Constructor de un atomo
 	public FBF(Character atomo) throws Exception{
-		
-		if(comp.getAlfabeto().contains(atomo)== false){
-			throw new ExcepcionLogica();
-		}
-		operador = atomo;
-		fbfI = null;
-		fbfD = null;
-		esAtomo = true;		
+            
+            if(comp.getAlfabeto().contains(atomo)== false){
+                throw new ExcepcionLogica();
+            }
+            operador = atomo;
+            fbfI = null;
+            fbfD = null;
+            esAtomo = true;		
 	}
-	
-	
 	
 	//Constructor para expresion compuesta
 	public FBF(String expresion) throws Exception{
@@ -64,7 +62,7 @@ public class FBF {
 			else if(c=='∧' && parentAbierto == 0){
 				posicionAND = i;
 			}
-			else if(c=='⊢' && parentAbierto == 0){
+			else if(c=='¬' && parentAbierto == 0){
 				posicionNOT = i;
 			}
                         

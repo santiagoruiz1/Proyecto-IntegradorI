@@ -5,7 +5,7 @@
 */
 package co.edu.udea.PI.UI;
 
-import co.edu.udea.PI.logica.Axiomas;
+import co.edu.udea.PI.logica.Logica;
 import co.edu.udea.PI.logica.FBF;
 import java.awt.Color;
 
@@ -13,12 +13,12 @@ import java.awt.Color;
  *
  * @author david
  */
-public class Logic extends javax.swing.JFrame {
+public class PantallaPrincipal extends javax.swing.JFrame {
     
     /**
      * Creates new form Logic
      */
-    public Logic() {
+    public PantallaPrincipal() {
         initComponents();
         btnAbrePar.setFocusable(false);
         btnCierraPar.setFocusable(false);
@@ -42,9 +42,6 @@ public class Logic extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         botonValidar = new javax.swing.JButton();
         textExpre1 = new javax.swing.JTextField();
-        textExpre2 = new javax.swing.JTextField();
-        botonComprobar = new javax.swing.JButton();
-        labelAxioma = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnNegacion = new javax.swing.JButton();
         btnAbrePar = new javax.swing.JButton();
@@ -53,6 +50,8 @@ public class Logic extends javax.swing.JFrame {
         btnFlechaBi = new javax.swing.JButton();
         btnDisy = new javax.swing.JButton();
         btnConj = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jButton1.setText("jButton1");
 
@@ -66,19 +65,9 @@ public class Logic extends javax.swing.JFrame {
             }
         });
 
-        botonComprobar.setText("Comprobar");
-        botonComprobar.setFocusable(false);
-        botonComprobar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonComprobarActionPerformed(evt);
-            }
-        });
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
-        labelAxioma.setText("Axioma:");
-
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnNegacion.setText("⊢");
+        btnNegacion.setText("¬");
         btnNegacion.setFocusable(false);
         btnNegacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +77,9 @@ public class Logic extends javax.swing.JFrame {
 
         btnAbrePar.setText("(");
         btnAbrePar.setFocusable(false);
+        btnAbrePar.setMaximumSize(new java.awt.Dimension(22, 27));
+        btnAbrePar.setMinimumSize(new java.awt.Dimension(22, 27));
+        btnAbrePar.setPreferredSize(new java.awt.Dimension(22, 27));
         btnAbrePar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAbreParActionPerformed(evt);
@@ -139,39 +131,48 @@ public class Logic extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnNegacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnFlecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConj)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAbrePar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFlechaBi))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCierraPar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDisy))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(btnNegacion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAbrePar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCierraPar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnFlecha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnFlechaBi)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDisy)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnConj)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNegacion)
-                    .addComponent(btnAbrePar)
-                    .addComponent(btnCierraPar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDisy)
+                    .addComponent(btnAbrePar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCierraPar)
                     .addComponent(btnFlecha)
-                    .addComponent(btnFlechaBi))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnConj)
-                .addGap(25, 25, 25))
+                    .addComponent(btnFlechaBi)
+                    .addComponent(btnDisy)
+                    .addComponent(btnConj))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null}
+            },
+            new String [] {
+                "Paso", "Proposición a validar", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,41 +182,33 @@ public class Logic extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(textExpre2)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonComprobar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelAxioma)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(textExpre1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonValidar)
-                        .addGap(30, 30, 30))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 75, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textExpre1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(botonValidar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(textExpre1)
-                        .addGap(2, 2, 2))
-                    .addComponent(botonValidar, javax.swing.GroupLayout.Alignment.LEADING))
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textExpre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonComprobar))
-                .addGap(18, 18, 18)
-                .addComponent(labelAxioma)
-                .addGap(59, 59, 59))
+                        .addGap(2, 2, 2)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonValidar)
+                        .addGap(57, 57, 57)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
         pack();
@@ -234,34 +227,11 @@ public class Logic extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonValidarActionPerformed
 
-    private void botonComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprobarActionPerformed
-        String expresion = textExpre1.getText();
-        String expresion2 = textExpre2.getText();
-        labelAxioma.setText("Axioma:");
-        FBF f;
-        FBF f2;
-        try {
-            if(expresion.length()==1){
-                f = new FBF(expresion.charAt(0));
-            }else{
-                f = new FBF(expresion);
-            }
-            if(expresion2.length()==1){
-                f2 = new FBF(expresion2.charAt(0));
-            }else{
-                f2 = new FBF(expresion2);
-            }
-            Axiomas axiomas = new Axiomas(f, f2);
-            labelAxioma.setText(axiomas.getTipoAxioma());
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_botonComprobarActionPerformed
-
     private void btnNegacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNegacionActionPerformed
 
         int pos = textExpre1.getCaretPosition();
         String texto = textExpre1.getText();
-        texto = texto.substring(0, pos) + '⊢' + texto.substring(pos, texto.length());
+        texto = texto.substring(0, pos) + '¬' + texto.substring(pos, texto.length());
         textExpre1.setText(texto);
         textExpre1.setCaretPosition(pos+1);
         
@@ -339,26 +309,26 @@ public class Logic extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Logic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Logic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Logic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Logic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Logic().setVisible(true);
+                new PantallaPrincipal().setVisible(true);
             }
         });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonComprobar;
     private javax.swing.JButton botonValidar;
     private javax.swing.JButton btnAbrePar;
     private javax.swing.JButton btnCierraPar;
@@ -369,8 +339,8 @@ public class Logic extends javax.swing.JFrame {
     private javax.swing.JButton btnNegacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labelAxioma;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField textExpre1;
-    private javax.swing.JTextField textExpre2;
     // End of variables declaration//GEN-END:variables
 }
