@@ -219,7 +219,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         String expresion = textExpre1.getText();
         
         try {            
-            FBF f = new FBF(expresion);                
+            FBF f = new FBF(expresion);  
             textExpre1.setBackground(Color.GREEN);
         } catch (Exception e) {
             textExpre1.setBackground(Color.red);
