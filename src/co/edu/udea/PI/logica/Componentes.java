@@ -11,7 +11,7 @@ public class Componentes {
 		
 		Character []alf = {'q','w','e','r','t','y','u','i','o','p','a','s',
                 'd','f','g','h','j','k','l','z','x','c','v','b','n','m'};  	//Operadores permitidos
-		Character []ops = {'∨','∧','¬','→','↔'};     //Atomos permitidos 
+		Character []ops = {'∨','∧','¬','→','↔','≡','('};     //Atomos permitidos 
 		
 		for (int i=0;i<ops.length;i++) {
 			operadores.add(ops[i]);
