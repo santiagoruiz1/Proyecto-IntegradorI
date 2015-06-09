@@ -86,7 +86,7 @@ public class FBF {
 			}else{
 				fbfD = new FBF(eD);
 			}
-			return;
+			esAtomo = false;
 			
 		}
                 
@@ -105,7 +105,7 @@ public class FBF {
 			}else{
 				fbfD = new FBF(eD);
 			}
-			return;
+			esAtomo = false;
 			
 		}
                 
@@ -124,7 +124,7 @@ public class FBF {
 			}else{
 				fbfD = new FBF(eD);
 			}
-			return;
+			esAtomo = false;
 			
 		}
 		else if(posicionAND != -1){
@@ -142,7 +142,7 @@ public class FBF {
 			}else{
 				fbfD = new FBF(eD);
 			}
-			return;
+			esAtomo = false;
 			
 		}
 		else if(posicionNOT == 0 ){
@@ -154,22 +154,40 @@ public class FBF {
 			}else{
 				fbfD = new FBF(eD);
 			}
-			return;		
+			esAtomo = false;		
 		}
                 else if(posicionNOT ==-1 &&posicionAND ==-1 &&posicionOR == -1 
                         && expresion.charAt(0)=='(' && expresion.charAt(expresion.length()-1)==')' ){
 			FBF aux = new FBF(expresion.substring(1, expresion.length()-1));
-                        operador = aux.getOperador();
-                        fbfI = aux.getFbfI();
-                        fbfD = aux.getFbfD();
-                        esAtomo = aux.getEsAtomo();
-                        return;
+                        operador = '(';
+                        fbfI = null;
+                        fbfD = aux;
+                        esAtomo = false;
+                        
 		}else{
                     throw new ExcepcionLogica(); 
                 }
 		
 	}
 	
+        @Override
+        public String toString(){
+            
+            if(esAtomo==true){
+                return operador.toString();
+            }else{
+                switch(operador){
+                    case '(':
+                        return "("+ fbfD.toString()+")";
+                        
+                    case '¬':
+                        return "¬"+ fbfD.toString();
+                        
+                    default:
+                        return fbfI.toString()+operador.toString()+fbfD.toString();
+                }
+            }
+        }
 	
 	public Character getOperador() {
 		return operador;
