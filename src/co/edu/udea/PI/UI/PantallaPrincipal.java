@@ -348,13 +348,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
     private void botonValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonValidarActionPerformed
         
-        comboPaso.setVisible(true);
         String expresion = textExpre1.getText();
         String justificacion= comboRegla.getSelectedItem().toString();
         try {            
             FBF f = new FBF(expresion);  
             textExpre1.setBackground(Color.GREEN);
-            if(!comboPremisas.isVisible()){
+            if(!comboPremisas.isVisible() && comboPaso.isVisible()){
                 justificacion+= " en " + comboPaso.getSelectedItem().toString();
             }
             agregarFBF(expresion,justificacion);
@@ -365,6 +364,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.comboPremisas.setVisible(false);
         this.comboRegla.setSelectedIndex(0);
         this.comboPaso.setSelectedIndex(0);
+        comboPaso.setVisible(true);
         this.comboPremisas.setSelectedIndex(0);
         
     }//GEN-LAST:event_botonValidarActionPerformed
@@ -414,7 +414,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             for (int i = 0; i < antecedentes.size(); i++) {
                 comboPremisas.addItem(antecedentes.get(i));
             }
-        } 
+        } else if(comboRegla.getSelectedItem().toString().contains("Axioma")){
+            comboPaso.setVisible(false);
+        }
         
     }//GEN-LAST:event_comboReglaActionPerformed
 
