@@ -7,7 +7,10 @@ package co.edu.udea.PI.UI;
 
 import co.edu.udea.PI.logica.Logica;
 import co.edu.udea.PI.logica.FBF;
+import co.edu.udea.PI.logica.Hipotesis;
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -15,19 +18,13 @@ import java.awt.Color;
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
     
-    /**
-     * Creates new form Logic
-     */
+    private String textFocus;
+    private Hipotesis hipotesis;
+    
     public PantallaPrincipal() {
         initComponents();
-        btnAbrePar.setFocusable(false);
-        btnCierraPar.setFocusable(false);
-        btnConj.setFocusable(false);
-        btnDisy.setFocusable(false);
-        btnFlecha.setFocusable(false);
-        btnFlechaBi.setFocusable(false);
-        btnNegacion.setFocusable(false);
-        botonValidar.setFocusable(false);
+        deshabilitarComponentes();
+        
     }
     
     /**
@@ -50,12 +47,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         btnFlechaBi = new javax.swing.JButton();
         btnDisy = new javax.swing.JButton();
         btnConj = new javax.swing.JButton();
+        btnDeduce = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         comboRegla = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         comboBrf = new javax.swing.JComboBox();
+        textHip = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        botonFijar = new javax.swing.JButton();
+        comboPremisas = new javax.swing.JComboBox();
 
         jButton1.setText("jButton1");
 
@@ -66,6 +68,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         botonValidar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonValidarActionPerformed(evt);
+            }
+        });
+
+        textExpre1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textExpre1FocusGained(evt);
             }
         });
 
@@ -130,6 +138,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnDeduce.setText("⊢");
+        btnDeduce.setFocusable(false);
+        btnDeduce.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeduceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -149,7 +165,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(btnDisy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnConj)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDeduce)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,8 +179,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(btnFlecha)
                     .addComponent(btnFlechaBi)
                     .addComponent(btnDisy)
-                    .addComponent(btnConj))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnConj)
+                    .addComponent(btnDeduce))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -178,7 +197,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        comboRegla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Axioma 1", "Axioma 2", "Axioma 3", "Axioma 4" }));
+        comboRegla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Premisa", "RFP 5", "RFP 6", "RFP 7", "RFP 8", "Axioma 1", "Axioma 2", "Axioma 3", "Axioma 4" }));
         comboRegla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboReglaActionPerformed(evt);
@@ -189,6 +208,28 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Justificación");
 
+        textHip.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textHipFocusGained(evt);
+            }
+        });
+
+        jLabel3.setText("Hipotesis");
+
+        botonFijar.setText("Fijar");
+        botonFijar.setFocusable(false);
+        botonFijar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonFijarActionPerformed(evt);
+            }
+        });
+
+        comboPremisas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPremisasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,54 +237,107 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textExpre1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(textHip))
                         .addGap(18, 18, 18)
-                        .addComponent(botonValidar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonValidar)
+                            .addComponent(botonFijar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
+                                .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(comboBrf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
                         .addGap(0, 75, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonValidar)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textExpre1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBrf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textHip, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonFijar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textExpre1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonValidar))
+                .addGap(3, 3, 3)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBrf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    public void agregarOperandos(char c){
+        int pos=0;
+        String texto;
+        if(this.getTextFocus().equals("textExpre1")){
+            pos = textExpre1.getCaretPosition();
+            texto = textExpre1.getText();
+            texto = texto.substring(0, pos) + c + texto.substring(pos, texto.length());
+            textExpre1.setText(texto);
+            textExpre1.setCaretPosition(pos+1);
+        } else if(this.getTextFocus().equals("textHip")){
+            pos = textHip.getCaretPosition();
+            texto = textHip.getText();
+            texto = texto.substring(0, pos) + c + texto.substring(pos, texto.length());
+            textHip.setText(texto);
+            textHip.setCaretPosition(pos+1);
+        }
+    }
+    
+    public void deshabilitarComponentes(){
+        this.textExpre1.setEnabled(false);
+        this.comboBrf.setEnabled(false);
+        this.comboRegla.setEnabled(false);
+        comboPremisas.setVisible(false);
+        
+        //
+        btnAbrePar.setFocusable(false);
+        btnCierraPar.setFocusable(false);
+        btnConj.setFocusable(false);
+        btnDisy.setFocusable(false);
+        btnFlecha.setFocusable(false);
+        btnFlechaBi.setFocusable(false);
+        btnNegacion.setFocusable(false);
+        botonValidar.setFocusable(false);
+    }
+    
+    public void habilitarComponentes(){
+        this.textHip.setEnabled(false);
+        this.botonFijar.setEnabled(false);
+        this.btnDeduce.setEnabled(false);
+        this.textExpre1.setEnabled(true);
+        this.comboBrf.setEnabled(true);
+        this.comboRegla.setEnabled(true);
+    }
+    
     private void botonValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonValidarActionPerformed
-        // TODO add your handling code here:
+        
         String expresion = textExpre1.getText();
         
         try {            
@@ -257,72 +351,80 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void btnNegacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNegacionActionPerformed
 
-        int pos = textExpre1.getCaretPosition();
-        String texto = textExpre1.getText();
-        texto = texto.substring(0, pos) + '¬' + texto.substring(pos, texto.length());
-        textExpre1.setText(texto);
-        textExpre1.setCaretPosition(pos+1);
-        
+        this.agregarOperandos('¬');
     }//GEN-LAST:event_btnNegacionActionPerformed
 
     private void btnAbreParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbreParActionPerformed
 
-        int pos = textExpre1.getCaretPosition();
-        String texto = textExpre1.getText();
-        texto = texto.substring(0, pos) + '('+ texto.substring(pos, texto.length());
-        textExpre1.setText(texto);
-        textExpre1.setCaretPosition(pos+1);
+        this.agregarOperandos('(');
        
     }//GEN-LAST:event_btnAbreParActionPerformed
 
     private void btnCierraParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCierraParActionPerformed
         
-        int pos = textExpre1.getCaretPosition();
-        String texto = textExpre1.getText();
-        texto = texto.substring(0, pos) + ')'+ texto.substring(pos, texto.length());
-        textExpre1.setText(texto);
-        textExpre1.setCaretPosition(pos+1);
+        this.agregarOperandos(')');
     }//GEN-LAST:event_btnCierraParActionPerformed
 
     private void btnFlechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFlechaActionPerformed
         
-        int pos = textExpre1.getCaretPosition();
-        String texto = textExpre1.getText();
-        texto = texto.substring(0, pos) + '→'+ texto.substring(pos, texto.length());
-        textExpre1.setText(texto);
-        textExpre1.setCaretPosition(pos+1);
+        this.agregarOperandos('→');
     }//GEN-LAST:event_btnFlechaActionPerformed
 
     private void btnFlechaBiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFlechaBiActionPerformed
         
-        int pos = textExpre1.getCaretPosition();
-        String texto = textExpre1.getText();
-        texto = texto.substring(0, pos) + '↔'+ texto.substring(pos, texto.length());
-        textExpre1.setText(texto);
-        textExpre1.setCaretPosition(pos+1);
+        this.agregarOperandos('↔');
     }//GEN-LAST:event_btnFlechaBiActionPerformed
 
     private void btnDisyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisyActionPerformed
         
-        int pos = textExpre1.getCaretPosition();
-        String texto = textExpre1.getText();
-        texto = texto.substring(0, pos) + '∨'+ texto.substring(pos, texto.length());
-        textExpre1.setText(texto);
-        textExpre1.setCaretPosition(pos+1);
+        this.agregarOperandos('∨');
     }//GEN-LAST:event_btnDisyActionPerformed
 
     private void btnConjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConjActionPerformed
         
-        int pos = textExpre1.getCaretPosition();
-        String texto = textExpre1.getText();
-        texto = texto.substring(0, pos) + '∧'+ texto.substring(pos, texto.length());
-        textExpre1.setText(texto);
-        textExpre1.setCaretPosition(pos+1);
+        this.agregarOperandos('∧');
     }//GEN-LAST:event_btnConjActionPerformed
 
     private void comboReglaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboReglaActionPerformed
-        // TODO add your handling code here:
+        if (comboRegla.getSelectedItem().equals("Premisa")){
+            comboPremisas.setVisible(true);
+            ArrayList antecedentes= this.getHipotesis().getAntecedentes();
+            comboPremisas.addItem(new String("Seleccione"));
+            for (int i = 0; i < antecedentes.size(); i++) {
+                comboPremisas.addItem(antecedentes.get(i));
+            }
+        } 
+        
     }//GEN-LAST:event_comboReglaActionPerformed
+
+    private void textExpre1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textExpre1FocusGained
+        this.setTextFocus("textExpre1");
+    }//GEN-LAST:event_textExpre1FocusGained
+
+    private void textHipFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textHipFocusGained
+        this.setTextFocus("textHip");
+    }//GEN-LAST:event_textHipFocusGained
+
+    private void btnDeduceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeduceActionPerformed
+        this.agregarOperandos('⊢');
+    }//GEN-LAST:event_btnDeduceActionPerformed
+
+    private void botonFijarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFijarActionPerformed
+        String expresion = textHip.getText();
+        try {            
+            setHipotesis(new Hipotesis(expresion));  
+            textHip.setBackground(Color.GREEN);
+            habilitarComponentes();
+        } catch (Exception e) {
+            textHip.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_botonFijarActionPerformed
+
+    private void comboPremisasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPremisasActionPerformed
+        if (!comboRegla.getSelectedItem().equals("Seleccione")){
+            textExpre1.setText(comboPremisas.getSelectedItem().toString());            
+        }
+    }//GEN-LAST:event_comboPremisasActionPerformed
     
     /**
      * @param args the command line arguments
@@ -361,22 +463,55 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonFijar;
     private javax.swing.JButton botonValidar;
     private javax.swing.JButton btnAbrePar;
     private javax.swing.JButton btnCierraPar;
     private javax.swing.JButton btnConj;
+    private javax.swing.JButton btnDeduce;
     private javax.swing.JButton btnDisy;
     private javax.swing.JButton btnFlecha;
     private javax.swing.JButton btnFlechaBi;
     private javax.swing.JButton btnNegacion;
     private javax.swing.JComboBox comboBrf;
+    private javax.swing.JComboBox comboPremisas;
     private javax.swing.JComboBox comboRegla;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField textExpre1;
+    private javax.swing.JTextField textHip;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the textFocus
+     */
+    public String getTextFocus() {
+        return textFocus;
+    }
+
+    /**
+     * @param textFocus the textFocus to set
+     */
+    public void setTextFocus(String textFocus) {
+        this.textFocus = textFocus;
+    }
+
+    /**
+     * @return the hipotesis
+     */
+    public Hipotesis getHipotesis() {
+        return hipotesis;
+    }
+
+    /**
+     * @param hipotesis the hipotesis to set
+     */
+    public void setHipotesis(Hipotesis hipotesis) {
+        this.hipotesis = hipotesis;
+    }
 }
