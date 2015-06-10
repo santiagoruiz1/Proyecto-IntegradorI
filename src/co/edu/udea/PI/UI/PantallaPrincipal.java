@@ -5,11 +5,14 @@
 */
 package co.edu.udea.PI.UI;
 
+import co.edu.udea.PI.logica.Axiomas;
 import co.edu.udea.PI.logica.FBF;
 import co.edu.udea.PI.logica.Hipotesis;
 import co.edu.udea.PI.logica.Logica;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -20,10 +23,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private String textFocus;
     private Hipotesis hipotesis;
     private int pasoDemostracion=0;
+    private Axiomas axiomas;
     
-    public PantallaPrincipal() {
+    public PantallaPrincipal() throws Exception {
         initComponents();
         deshabilitarComponentes();
+        axiomas = new Axiomas();
         
     }
     /**
@@ -351,12 +356,35 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         String expresion = textExpre1.getText();
         String justificacion= comboRegla.getSelectedItem().toString();
         try {            
-            FBF f = new FBF(expresion);  
-            textExpre1.setBackground(Color.GREEN);
-            if(!comboPremisas.isVisible() && comboPaso.isVisible()){
-                justificacion+= " en " + comboPaso.getSelectedItem().toString();
+            FBF f = new FBF(expresion);
+            boolean v = true;
+            
+            if(comboRegla.getSelectedItem().toString().contains("Axioma")){                
+                String item = comboRegla.getSelectedItem().toString();               
+                
+                switch(item){
+                    case "Axioma 1":
+                        v = axiomas.validar(1, f);
+                        break;
+                    case "Axioma 2":
+                        v = axiomas.validar(2, f);
+                        break;
+                    case "Axioma 3":
+                        v = axiomas.validar(3, f);
+                        break;
+                    case "Axioma 4":
+                        v = axiomas.validar(4, f);
+                        break;                    
+                }
             }
-            agregarFBF(expresion,justificacion);
+            if(v){
+                textExpre1.setBackground(Color.GREEN);            
+                agregarFBF(expresion,justificacion);                
+            }else{
+                textExpre1.setBackground(Color.red);
+            }
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
             textExpre1.setBackground(Color.red);
@@ -480,7 +508,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PantallaPrincipal().setVisible(true);
+                try {
+                    new PantallaPrincipal().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
