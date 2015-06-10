@@ -5,28 +5,27 @@
 */
 package co.edu.udea.PI.UI;
 
-import co.edu.udea.PI.logica.Logica;
 import co.edu.udea.PI.logica.FBF;
 import co.edu.udea.PI.logica.Hipotesis;
+import co.edu.udea.PI.logica.Logica;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
-/**
- *
- * @author david
- */
+
 public class PantallaPrincipal extends javax.swing.JFrame {
     
     private String textFocus;
     private Hipotesis hipotesis;
+    private int pasoDemostracion=0;
     
     public PantallaPrincipal() {
         initComponents();
         deshabilitarComponentes();
         
     }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,15 +48,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         btnConj = new javax.swing.JButton();
         btnDeduce = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaDemostracion = new javax.swing.JTable();
         comboRegla = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        comboBrf = new javax.swing.JComboBox();
         textHip = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         botonFijar = new javax.swing.JButton();
         comboPremisas = new javax.swing.JComboBox();
+        comboPaso = new javax.swing.JComboBox();
 
         jButton1.setText("jButton1");
 
@@ -77,7 +76,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnNegacion.setText("¬");
         btnNegacion.setFocusable(false);
@@ -184,17 +183,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDemostracion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+
             },
             new String [] {
-                "Paso", "Proposición a validar", "Title 3", "Title 4"
+                "Paso", "Proposición a validar", "Justificacion"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(tablaDemostracion);
+        if (tablaDemostracion.getColumnModel().getColumnCount() > 0) {
+            tablaDemostracion.getColumnModel().getColumn(1).setResizable(false);
         }
 
         comboRegla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Premisa", "RFP 5", "RFP 6", "RFP 7", "RFP 8", "Axioma 1", "Axioma 2", "Axioma 3", "Axioma 4" }));
@@ -230,6 +229,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        comboPaso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,7 +256,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(comboBrf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1)
                             .addComponent(jLabel3))
                         .addGap(0, 75, Short.MAX_VALUE)))
@@ -280,8 +281,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBrf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -312,8 +313,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
     public void deshabilitarComponentes(){
         this.textExpre1.setEnabled(false);
-        this.comboBrf.setEnabled(false);
+        this.comboPaso.setEnabled(false);
         this.comboRegla.setEnabled(false);
+        this.botonValidar.setEnabled(false);
         comboPremisas.setVisible(false);
         
         //
@@ -332,20 +334,38 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.botonFijar.setEnabled(false);
         this.btnDeduce.setEnabled(false);
         this.textExpre1.setEnabled(true);
-        this.comboBrf.setEnabled(true);
+        this.comboPaso.setEnabled(true);
         this.comboRegla.setEnabled(true);
+        this.botonValidar.setEnabled(true);
+    }
+    
+    public void agregarFBF(String expresion, String justificacion){
+        setPasoDemostracion(getPasoDemostracion()+1);
+        DefaultTableModel model = (DefaultTableModel) tablaDemostracion.getModel();
+        model.addRow(new Object[]{pasoDemostracion,expresion , justificacion});
+        comboPaso.addItem(pasoDemostracion);
     }
     
     private void botonValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonValidarActionPerformed
         
+        comboPaso.setVisible(true);
         String expresion = textExpre1.getText();
-        
+        String justificacion= comboRegla.getSelectedItem().toString();
         try {            
             FBF f = new FBF(expresion);  
             textExpre1.setBackground(Color.GREEN);
+            if(!comboPremisas.isVisible()){
+                justificacion+= " en " + comboPaso.getSelectedItem().toString();
+            }
+            agregarFBF(expresion,justificacion);
         } catch (Exception e) {
+            e.printStackTrace();
             textExpre1.setBackground(Color.red);
         }
+        this.comboPremisas.setVisible(false);
+        this.comboRegla.setSelectedIndex(0);
+        this.comboPaso.setSelectedIndex(0);
+        this.comboPremisas.setSelectedIndex(0);
         
     }//GEN-LAST:event_botonValidarActionPerformed
 
@@ -388,6 +408,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void comboReglaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboReglaActionPerformed
         if (comboRegla.getSelectedItem().equals("Premisa")){
             comboPremisas.setVisible(true);
+            comboPaso.setVisible(false);
             ArrayList antecedentes= this.getHipotesis().getAntecedentes();
             comboPremisas.addItem(new String("Seleccione"));
             for (int i = 0; i < antecedentes.size(); i++) {
@@ -473,7 +494,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnFlecha;
     private javax.swing.JButton btnFlechaBi;
     private javax.swing.JButton btnNegacion;
-    private javax.swing.JComboBox comboBrf;
+    private javax.swing.JComboBox comboPaso;
     private javax.swing.JComboBox comboPremisas;
     private javax.swing.JComboBox comboRegla;
     private javax.swing.JButton jButton1;
@@ -482,7 +503,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaDemostracion;
     private javax.swing.JTextField textExpre1;
     private javax.swing.JTextField textHip;
     // End of variables declaration//GEN-END:variables
@@ -513,5 +534,19 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      */
     public void setHipotesis(Hipotesis hipotesis) {
         this.hipotesis = hipotesis;
+    }
+
+    /**
+     * @return the pasoDemostracion
+     */
+    public int getPasoDemostracion() {
+        return pasoDemostracion;
+    }
+
+    /**
+     * @param pasoDemostracion the pasoDemostracion to set
+     */
+    public void setPasoDemostracion(int pasoDemostracion) {
+        this.pasoDemostracion = pasoDemostracion;
     }
 }
