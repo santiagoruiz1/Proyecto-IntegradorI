@@ -228,6 +228,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        comboPremisas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
         comboPremisas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboPremisasActionPerformed(evt);
@@ -438,7 +439,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             comboPremisas.setVisible(true);
             comboPaso.setVisible(false);
             ArrayList antecedentes= this.getHipotesis().getAntecedentes();
-            comboPremisas.addItem(new String("Seleccione"));
+            //comboPremisas.addItem(new String("Seleccione"));
             for (int i = 0; i < antecedentes.size(); i++) {
                 comboPremisas.addItem(antecedentes.get(i));
             }
