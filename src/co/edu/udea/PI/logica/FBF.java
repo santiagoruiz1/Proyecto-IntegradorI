@@ -44,16 +44,16 @@ public class FBF {
 		for (int i = 0; i < expresion.length(); i++) {
 			
 			Character c = expresion.charAt(i);	
-			if(c=='('){
+			if(c=='(' ){
 				parentAbierto++;				
 			}
 			else if(c==')'){
 				parentAbierto--;				
 			}
-                        else if(c=='↔'){
+                        else if(c=='↔' && parentAbierto == 0){
 				posicionFlechaBi = i;				
 			}
-                        else if(c=='→'){
+                        else if(c=='→' && parentAbierto == 0){
 				posicionFlecha = i;				
 			}
 			else if(c=='∨' && parentAbierto == 0){
