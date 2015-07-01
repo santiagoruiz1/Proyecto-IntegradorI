@@ -63,7 +63,9 @@ public class FBF {
 				posicionAND = i;
 			}
 			else if(c=='¬' && parentAbierto == 0){
-				posicionNOT = i;
+				if(posicionNOT==-1){
+                                    posicionNOT = i;
+                                }
 			}
                         
                             

@@ -217,6 +217,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 textHipFocusGained(evt);
             }
         });
+        textHip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textHipActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Hipotesis");
 
@@ -291,9 +296,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         pack();
@@ -464,9 +469,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void botonFijarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFijarActionPerformed
         String expresion = textHip.getText();
         try {            
-            setHipotesis(new Hipotesis(expresion));  
+            //setHipotesis(new Hipotesis(expresion));  
+            FBF f  = new FBF(expresion);
             textHip.setBackground(Color.GREEN);
-            habilitarComponentes();
+            //habilitarComponentes();
         } catch (Exception e) {
             textHip.setBackground(Color.red);
         }
@@ -477,6 +483,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             textExpre1.setText(comboPremisas.getSelectedItem().toString());            
         }
     }//GEN-LAST:event_comboPremisasActionPerformed
+
+    private void textHipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textHipActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textHipActionPerformed
     
     /**
      * @param args the command line arguments
