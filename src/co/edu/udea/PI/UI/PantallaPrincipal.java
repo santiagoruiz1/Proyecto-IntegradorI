@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -50,7 +51,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         btnFlechaBi = new javax.swing.JButton();
         btnDisy = new javax.swing.JButton();
         btnConj = new javax.swing.JButton();
-        btnDeduce = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaDemostracion = new javax.swing.JTable();
         comboRegla = new javax.swing.JComboBox();
@@ -64,6 +64,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         comboPremisa = new javax.swing.JComboBox();
         botonAñadir = new javax.swing.JButton();
         text1 = new javax.swing.JTextField();
+        botonReiniciar = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -144,14 +145,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnDeduce.setText("⊢");
-        btnDeduce.setFocusable(false);
-        btnDeduce.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeduceActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -171,8 +164,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(btnDisy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnConj)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDeduce)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -185,8 +176,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(btnFlecha)
                     .addComponent(btnFlechaBi)
                     .addComponent(btnDisy)
-                    .addComponent(btnConj)
-                    .addComponent(btnDeduce))
+                    .addComponent(btnConj))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -263,6 +253,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        botonReiniciar.setText("Reiniciar");
+        botonReiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonReiniciarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -270,20 +267,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
-                        .addGap(0, 75, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -299,7 +282,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(botonAñadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(botonValidar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonFijar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(botonFijar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonReiniciar))
+                        .addGap(0, 75, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -332,7 +330,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonReiniciar)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -377,7 +377,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public void habilitarComponentes(){
         this.textHip.setEnabled(false);
         this.botonFijar.setEnabled(false);
-        this.btnDeduce.setEnabled(false);
         this.textExpre1.setEnabled(true);
         this.comboPaso.setEnabled(true);
         this.comboRegla.setEnabled(true);
@@ -507,10 +506,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.setTextFocus("textHip");
     }//GEN-LAST:event_textHipFocusGained
 
-    private void btnDeduceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeduceActionPerformed
-        this.agregarOperandos('⊢');
-    }//GEN-LAST:event_btnDeduceActionPerformed
-
     private void botonFijarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFijarActionPerformed
         String expresion = text1.getText();
         try {
@@ -578,6 +573,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             textHip.setBackground(Color.red);
         }
     }//GEN-LAST:event_botonAñadirActionPerformed
+
+    private void botonReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReiniciarActionPerformed
+        PantallaPrincipal pantalla;
+        try {
+            pantalla = new PantallaPrincipal();
+            pantalla.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonReiniciarActionPerformed
     
     /**
      * @param args the command line arguments
@@ -622,11 +628,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonFijar;
+    private javax.swing.JButton botonReiniciar;
     private javax.swing.JButton botonValidar;
     private javax.swing.JButton btnAbrePar;
     private javax.swing.JButton btnCierraPar;
     private javax.swing.JButton btnConj;
-    private javax.swing.JButton btnDeduce;
     private javax.swing.JButton btnDisy;
     private javax.swing.JButton btnFlecha;
     private javax.swing.JButton btnFlechaBi;
