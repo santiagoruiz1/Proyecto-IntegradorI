@@ -8,14 +8,12 @@ package co.edu.udea.PI.UI;
 import co.edu.udea.PI.logica.Axiomas;
 import co.edu.udea.PI.logica.FBF;
 import co.edu.udea.PI.logica.Hipotesis;
-import co.edu.udea.PI.logica.Logica;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 
 public class PantallaPrincipal extends javax.swing.JFrame {
@@ -24,6 +22,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private Hipotesis hipotesis;
     private int pasoDemostracion=0;
     private Axiomas axiomas;
+    private int numClicks=0;
     
     public PantallaPrincipal() throws Exception {
         initComponents();
@@ -62,6 +61,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         botonFijar = new javax.swing.JButton();
         comboPremisas = new javax.swing.JComboBox();
         comboPaso = new javax.swing.JComboBox();
+        comboPremisa = new javax.swing.JComboBox();
+        botonAñadir = new javax.swing.JButton();
+        text1 = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
@@ -81,7 +83,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         btnNegacion.setText("¬");
         btnNegacion.setFocusable(false);
@@ -196,6 +198,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 "Paso", "Proposición a validar", "Justificacion"
             }
         ));
+        tablaDemostracion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tablaDemostracionFocusGained(evt);
+            }
+        });
+        tablaDemostracion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tablaDemostracionMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaDemostracion);
         if (tablaDemostracion.getColumnModel().getColumnCount() > 0) {
             tablaDemostracion.getColumnModel().getColumn(1).setResizable(false);
@@ -242,6 +254,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         comboPaso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
 
+        comboPremisa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Premisa", "Conclusion" }));
+
+        botonAñadir.setText("Añadir");
+        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAñadirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -249,14 +270,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textExpre1)
-                            .addComponent(textHip))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonValidar)
-                            .addComponent(botonFijar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,7 +283,23 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                 .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1)
                             .addComponent(jLabel3))
-                        .addGap(0, 75, Short.MAX_VALUE)))
+                        .addGap(0, 75, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(text1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textExpre1))
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textHip)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(comboPremisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonAñadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonValidar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonFijar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -280,8 +309,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textHip, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboPremisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonAñadir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(text1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonFijar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(2, 2, 2)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -298,7 +332,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         pack();
@@ -358,15 +392,27 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
     
     private void botonValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonValidarActionPerformed
-        
+        boolean error=false;
         String expresion = textExpre1.getText();
         String justificacion= comboRegla.getSelectedItem().toString();
-        try {            
+        
+        
+        if (comboRegla.getSelectedItem().equals("Premisa") && comboPremisas.getSelectedItem().equals("Seleccione")) {
+            JOptionPane.showMessageDialog(this,"Seleccione la premisa");
+            error=true;
+        } else if (comboRegla.getSelectedItem().equals("Seleccione")) {
+            JOptionPane.showMessageDialog(this,"Seleccione la justificación");
+            error=true;
+        }else if(!comboRegla.getSelectedItem().equals("Premisa") && comboPaso.getSelectedItem().equals("Seleccione")) {
+            JOptionPane.showMessageDialog(this,"Seleccione el paso");
+            error=true;
+        }
+        try {
             FBF f = new FBF(expresion);
             boolean v = true;
             
-            if(comboRegla.getSelectedItem().toString().contains("Axioma")){                
-                String item = comboRegla.getSelectedItem().toString();               
+            if(comboRegla.getSelectedItem().toString().contains("Axioma")){
+                String item = comboRegla.getSelectedItem().toString();
                 
                 switch(item){
                     case "Axioma 1":
@@ -380,19 +426,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         break;
                     case "Axioma 4":
                         v = axiomas.validar(4, f);
-                        break;                    
+                        break;
                 }
             }
-            if(v){
-                textExpre1.setBackground(Color.GREEN);            
-                agregarFBF(expresion,justificacion);                
-            }else{
-                textExpre1.setBackground(Color.red);
+            if(!error){
+                if(v){
+                    textExpre1.setBackground(Color.GREEN);
+                    agregarFBF(expresion,justificacion);
+                }else{
+                    textExpre1.setBackground(Color.red);
+                }
             }
+            
             
             
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             textExpre1.setBackground(Color.red);
         }
         this.comboPremisas.setVisible(false);
@@ -404,14 +453,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonValidarActionPerformed
 
     private void btnNegacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNegacionActionPerformed
-
+        
         this.agregarOperandos('¬');
     }//GEN-LAST:event_btnNegacionActionPerformed
 
     private void btnAbreParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbreParActionPerformed
-
+        
         this.agregarOperandos('(');
-       
+        
     }//GEN-LAST:event_btnAbreParActionPerformed
 
     private void btnCierraParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCierraParActionPerformed
@@ -443,11 +492,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         if (comboRegla.getSelectedItem().equals("Premisa")){
             comboPremisas.setVisible(true);
             comboPaso.setVisible(false);
-            ArrayList antecedentes= this.getHipotesis().getAntecedentes();
-            //comboPremisas.addItem(new String("Seleccione"));
-            for (int i = 0; i < antecedentes.size(); i++) {
-                comboPremisas.addItem(antecedentes.get(i));
-            }
+            
         } else if(comboRegla.getSelectedItem().toString().contains("Axioma")){
             comboPaso.setVisible(false);
         }
@@ -467,26 +512,72 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeduceActionPerformed
 
     private void botonFijarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFijarActionPerformed
-        String expresion = textHip.getText();
-        try {            
-            //setHipotesis(new Hipotesis(expresion));  
-            FBF f  = new FBF(expresion);
-            textHip.setBackground(Color.GREEN);
-            //habilitarComponentes();
+        String expresion = text1.getText();
+        try {
+            setHipotesis(new Hipotesis(expresion));
+            //FBF f  = new FBF(expresion);
+            text1.setBackground(Color.GREEN);
+            text1.setEnabled(false);
+            habilitarComponentes();
+            cargarAntecedentes();
         } catch (Exception e) {
-            textHip.setBackground(Color.red);
+            text1.setBackground(Color.red);
         }
     }//GEN-LAST:event_botonFijarActionPerformed
 
     private void comboPremisasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPremisasActionPerformed
         if (!comboRegla.getSelectedItem().equals("Seleccione")){
-            textExpre1.setText(comboPremisas.getSelectedItem().toString());            
+            textExpre1.setText(comboPremisas.getSelectedItem().toString());
         }
     }//GEN-LAST:event_comboPremisasActionPerformed
 
     private void textHipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textHipActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textHipActionPerformed
+
+    private void tablaDemostracionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDemostracionMouseReleased
+        
+    }//GEN-LAST:event_tablaDemostracionMouseReleased
+
+    private void tablaDemostracionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaDemostracionFocusGained
+//        int row = tablaDemostracion.getSelectionModel().getAnchorSelectionIndex();
+//        int col = tablaDemostracion.getColumnModel().getSelectionModel().getAnchorSelectionIndex();
+//        System.out.println("Selecciono row:" + row + " col:" + col + "value: "+tablaDemostracion.getValueAt(row, col));
+    }//GEN-LAST:event_tablaDemostracionFocusGained
+
+    private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
+        String expresion = textHip.getText();
+        String expresion2;
+        try {
+            FBF f  = new FBF(expresion);
+            textHip.setBackground(Color.GREEN);
+            expresion2= text1.getText();
+            if(comboPremisa.getSelectedItem().equals("Premisa")){
+                if(!expresion2.equals("")){
+                    expresion2+= "," + textHip.getText();
+                }else {
+                    expresion2+= textHip.getText();
+                }
+            }else if(comboPremisa.getSelectedItem().equals("Conclusion")){
+                String valor= text1.getText();
+                if(valor.contains("⊢")){
+                    String[] split = valor.split("⊢", 2);
+                    if(!split[1].equals("")){
+                        expresion2+= "," + textHip.getText();
+                    }else {
+                        expresion2+= textHip.getText();
+                    }
+                }else {
+                    expresion2+= "⊢" + textHip.getText();
+                    comboPremisa.setEnabled(false);
+                    botonAñadir.setEnabled(false);
+                }
+            }
+            text1.setText(expresion2);
+        } catch (Exception e) {
+            textHip.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_botonAñadirActionPerformed
     
     /**
      * @param args the command line arguments
@@ -529,6 +620,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonFijar;
     private javax.swing.JButton botonValidar;
     private javax.swing.JButton btnAbrePar;
@@ -540,6 +632,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnFlechaBi;
     private javax.swing.JButton btnNegacion;
     private javax.swing.JComboBox comboPaso;
+    private javax.swing.JComboBox comboPremisa;
     private javax.swing.JComboBox comboPremisas;
     private javax.swing.JComboBox comboRegla;
     private javax.swing.JButton jButton1;
@@ -549,49 +642,58 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaDemostracion;
+    private javax.swing.JTextField text1;
     private javax.swing.JTextField textExpre1;
     private javax.swing.JTextField textHip;
     // End of variables declaration//GEN-END:variables
-
+    
     /**
      * @return the textFocus
      */
     public String getTextFocus() {
         return textFocus;
     }
-
+    
     /**
      * @param textFocus the textFocus to set
      */
     public void setTextFocus(String textFocus) {
         this.textFocus = textFocus;
     }
-
+    
     /**
      * @return the hipotesis
      */
     public Hipotesis getHipotesis() {
         return hipotesis;
     }
-
+    
     /**
      * @param hipotesis the hipotesis to set
      */
     public void setHipotesis(Hipotesis hipotesis) {
         this.hipotesis = hipotesis;
     }
-
+    
     /**
      * @return the pasoDemostracion
      */
     public int getPasoDemostracion() {
         return pasoDemostracion;
     }
-
+    
     /**
      * @param pasoDemostracion the pasoDemostracion to set
      */
     public void setPasoDemostracion(int pasoDemostracion) {
         this.pasoDemostracion = pasoDemostracion;
+    }
+    
+    private void cargarAntecedentes() {
+        ArrayList antecedentes= this.getHipotesis().getAntecedentes();
+        //comboPremisas.addItem(new String("Seleccione"));
+        for (int i = 0; i < antecedentes.size(); i++) {
+            comboPremisas.addItem(antecedentes.get(i));
+        }
     }
 }
