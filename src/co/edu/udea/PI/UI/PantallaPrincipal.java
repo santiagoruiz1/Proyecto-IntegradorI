@@ -69,9 +69,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         text1 = new javax.swing.JTextField();
         botonReiniciar = new javax.swing.JButton();
         comboReglaSusti = new javax.swing.JComboBox();
-        jLabel4 = new javax.swing.JLabel();
+        labelSust1 = new javax.swing.JLabel();
         textSust1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        labelSust2 = new javax.swing.JLabel();
         textSust2 = new javax.swing.JTextField();
         butonSustituir = new javax.swing.JButton();
 
@@ -87,14 +87,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        textExpre1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textExpre1ActionPerformed(evt);
-            }
-        });
         textExpre1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 textExpre1FocusGained(evt);
+            }
+        });
+        textExpre1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textExpre1ActionPerformed(evt);
             }
         });
 
@@ -224,7 +224,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Expresion");
 
         jLabel2.setText("Justificación");
 
@@ -282,7 +282,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         comboReglaSusti.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "RFP5", "RFP6", "RFP7" }));
 
-        jLabel4.setText("A sustituir");
+        labelSust1.setText("A sustituir");
 
         textSust1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -290,7 +290,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Por");
+        labelSust2.setText("Por");
 
         textSust2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -349,8 +349,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                 .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
+                                    .addComponent(labelSust1)
+                                    .addComponent(labelSust2))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(textSust2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -390,11 +390,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
+                            .addComponent(labelSust1)
                             .addComponent(textSust1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
+                            .addComponent(labelSust2)
                             .addComponent(textSust2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(layout.createSequentialGroup()
@@ -449,7 +449,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.botonValidar.setEnabled(false);
         comboPremisas.setVisible(false);
         comboReglaSusti.setVisible(false);
-        
+        textSust1.setVisible(false);
+        textSust2.setVisible(false);
+        labelSust1.setVisible(false);
+        labelSust2.setVisible(false);
+        butonSustituir.setVisible(false);
         //
         btnAbrePar.setFocusable(false);
         btnCierraPar.setFocusable(false);
@@ -468,6 +472,47 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.comboPaso.setEnabled(true);
         this.comboRegla.setEnabled(true);
         this.botonValidar.setEnabled(true);
+    }
+    
+    public void deshabilitarCombos(int caso){
+        switch (caso){
+            case 1: //Sust
+                comboPremisas.setVisible(false);
+                comboPaso.setVisible(true);
+                comboReglaSusti.setVisible(true);
+                textExpre1.setEnabled(false);
+                botonValidar.setEnabled(false);
+                textSust1.setVisible(true);
+                textSust2.setVisible(true);
+                labelSust1.setVisible(true);
+                labelSust2.setVisible(true);
+                butonSustituir.setVisible(true);
+                break;
+            case 2: //Premisa
+                comboPremisas.setVisible(true);
+                comboPaso.setVisible(false);
+                comboReglaSusti.setVisible(false);
+                textExpre1.setEnabled(true);
+                botonValidar.setEnabled(true);
+                textSust1.setVisible(false);
+                textSust2.setVisible(false);
+                labelSust1.setVisible(false);
+                labelSust2.setVisible(false);
+                butonSustituir.setVisible(false);
+                break;
+            case 3: //Axiomas
+                comboPremisas.setVisible(false);
+                comboPaso.setVisible(false);
+                comboReglaSusti.setVisible(false);
+                textExpre1.setEnabled(true);
+                botonValidar.setEnabled(true);
+                textSust1.setVisible(false);
+                textSust2.setVisible(false);
+                labelSust1.setVisible(false);
+                labelSust2.setVisible(false);
+                butonSustituir.setVisible(false);
+                break;
+        }
     }
     
     public void agregarFBF(String expresion, String justificacion){
@@ -582,13 +627,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void comboReglaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboReglaActionPerformed
         if (comboRegla.getSelectedItem().equals("Premisa")){
-            comboPremisas.setVisible(true);
-            comboPaso.setVisible(false);
+            deshabilitarCombos(2);
             
         } else if(comboRegla.getSelectedItem().toString().contains("Axioma")){
-            comboPaso.setVisible(false);
+            deshabilitarCombos(3);
         }else if(comboRegla.getSelectedItem().toString().contains("Sustitucion")){
-            comboReglaSusti.setVisible(true);
+            deshabilitarCombos(1);
         }
         
     }//GEN-LAST:event_comboReglaActionPerformed
@@ -683,10 +727,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void butonSustituirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonSustituirActionPerformed
         boolean v;
         v= false;
+        int paso= Integer.parseInt(comboPaso.getSelectedItem().toString());
+        String expresion= tablaDemostracion.getValueAt(paso-1, 1).toString();
+        String expresion2 = textSust1.getText();
+        String expresion3 = textSust2.getText();
+        if(!expresion.contains(expresion2)){
+            JOptionPane.showMessageDialog(this, "La expresion no esta contenida en el paso seleccionado");
+            return;
+        }
         try {
             String item = comboReglaSusti.getSelectedItem().toString();
-            FBF g = new FBF(textSust2.getText());
-            FBF f= new FBF(textSust1.getText());
+            FBF g = new FBF(expresion3);
+            FBF f= new FBF(expresion2);
             
             switch (item) {
                 case "RFP5":
@@ -702,11 +754,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        expresion= expresion.replace(expresion2, expresion3);
+        agregarFBF(expresion,"Sustitucion en el paso: " + paso +  "con la regla" + comboReglaSusti.getSelectedItem());
         if(v){
+            
             textSust1.setBackground(Color.GREEN);
         } else {
-            textSust1.setBackground(Color.GREEN);
+            textSust1.setBackground(Color.RED);
         }
     }//GEN-LAST:event_butonSustituirActionPerformed
 
@@ -788,10 +842,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelSust1;
+    private javax.swing.JLabel labelSust2;
     private javax.swing.JTable tablaDemostracion;
     private javax.swing.JTextField text1;
     private javax.swing.JTextField textExpre1;

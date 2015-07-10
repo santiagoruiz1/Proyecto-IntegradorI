@@ -35,34 +35,65 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textExpre1" max="32767" attributes="0"/>
-                          <Component id="textHip" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="text1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textExpre1" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="textHip" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="comboPremisa" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="botonValidar" min="-2" max="-2" attributes="0"/>
-                          <Component id="botonFijar" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="botonAñadir" max="32767" attributes="0"/>
+                          <Component id="botonValidar" max="32767" attributes="0"/>
+                          <Component id="botonFijar" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="botonReiniciar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="comboRegla" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="comboPremisas" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="comboReglaSusti" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="comboPaso" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labelSust1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelSust2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="textSust2" min="-2" pref="204" max="-2" attributes="0"/>
+                                  <Component id="textSust1" min="-2" pref="204" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="butonSustituir" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="0" pref="75" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="63" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,9 +104,15 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="textHip" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="comboPremisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonAñadir" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="text1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonFijar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -88,13 +125,35 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="comboRegla" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboPremisas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboReglaSusti" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboPaso" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelSust1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textSust1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelSust2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textSust2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="butonSustituir" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="201" max="-2" attributes="0"/>
-              <EmptySpace pref="102" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="botonReiniciar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -112,6 +171,7 @@
     <Component class="javax.swing.JTextField" name="textExpre1">
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textExpre1FocusGained"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textExpre1ActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -141,8 +201,6 @@
                   <Component id="btnDisy" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnConj" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnDeduce" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -158,7 +216,6 @@
                       <Component id="btnFlechaBi" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnDisy" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnConj" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnDeduce" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
@@ -238,15 +295,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConjActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnDeduce">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#x22a2;"/>
-            <Property name="focusable" type="boolean" value="false"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeduceActionPerformed"/>
-          </Events>
-        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -288,23 +336,24 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaDemostracionMouseReleased"/>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tablaDemostracionFocusGained"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JComboBox" name="comboRegla">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="10">
+          <StringArray count="7">
             <StringItem index="0" value="Seleccione"/>
             <StringItem index="1" value="Premisa"/>
-            <StringItem index="2" value="RFP 5"/>
-            <StringItem index="3" value="RFP 6"/>
-            <StringItem index="4" value="RFP 7"/>
-            <StringItem index="5" value="RFP 8"/>
-            <StringItem index="6" value="Axioma 1"/>
-            <StringItem index="7" value="Axioma 2"/>
-            <StringItem index="8" value="Axioma 3"/>
-            <StringItem index="9" value="Axioma 4"/>
+            <StringItem index="2" value="Sustitucion"/>
+            <StringItem index="3" value="Axioma 1"/>
+            <StringItem index="4" value="Axioma 2"/>
+            <StringItem index="5" value="Axioma 3"/>
+            <StringItem index="6" value="Axioma 4"/>
           </StringArray>
         </Property>
       </Properties>
@@ -314,7 +363,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
+        <Property name="text" type="java.lang.String" value="Expresion"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -324,8 +373,8 @@
     </Component>
     <Component class="javax.swing.JTextField" name="textHip">
       <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textHipFocusGained"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textHipActionPerformed"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textHipFocusGained"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -362,6 +411,77 @@
           </StringArray>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboPremisa">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Premisa"/>
+            <StringItem index="1" value="Conclusion"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonA&#xf1;adir">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonA&#xf1;adirActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="text1">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="text1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonReiniciar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reiniciar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonReiniciarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboReglaSusti">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Seleccione"/>
+            <StringItem index="1" value="RFP5"/>
+            <StringItem index="2" value="RFP6"/>
+            <StringItem index="3" value="RFP7"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelSust1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="A sustituir"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textSust1">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textSust1FocusGained"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelSust2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Por"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textSust2">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textSust2FocusGained"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="butonSustituir">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sustituir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butonSustituirActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

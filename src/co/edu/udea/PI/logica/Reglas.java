@@ -25,6 +25,7 @@ public class Reglas {
         rfp5 = new ArrayList<>();
         rfp6 = new ArrayList<>();
         rfp7 = new ArrayList<>();
+        setupReglas();
     }
     
     public void setupReglas(){
@@ -44,24 +45,41 @@ public class Reglas {
     
     
     
-    private boolean compararArboles(FBF axioma, FBF expresion){
+    private boolean compararArboles(FBF regla, FBF expresion){
         
-        if(axioma == null && expresion == null){
+        if(regla == null && expresion == null){
             return true;
         }
-        if(axioma.getEsAtomo()==true){
-            hijosRegla.add(axioma.toString());
+        if(regla.getEsAtomo()==true){
+            hijosRegla.add(regla.toString());
             hijosExpresion.add(expresion.toString());
             return true;
         }
         
-        if(Objects.equals(axioma.getOperador(), expresion.getOperador()) &&
-                compararArboles(axioma.getFbfD(), expresion.getFbfD()) &&
-                compararArboles(axioma.getFbfI(), expresion.getFbfI()) ){
+        if(Objects.equals(regla.getOperador(), expresion.getOperador()) &&
+                compararArboles(regla.getFbfD(), expresion.getFbfD()) &&
+                compararArboles(regla.getFbfI(), expresion.getFbfI()) ){
             return true;
         }else{
             return false;
         }
+    }
+    
+    public boolean  compararExpresiones(FBF expresion1, FBF expresion2, ArrayList<FBF> rfp){
+        if(compararArboles( rfp.get(0),expresion1)){
+            if(compararArboles( rfp.get(1),expresion2)){
+                return true;
+            }else {
+                return false;
+            }
+        } else if (compararArboles( rfp.get(1),expresion1)){
+            if(compararArboles( rfp.get(0),expresion2)){
+                return true;
+            }else {
+                return false;
+            }
+        }
+        return false;
     }
     
     public boolean validar(int regla, FBF expresion ,FBF expresion2){
@@ -71,8 +89,11 @@ public class Reglas {
         
         switch (regla){
             case 5: if(!compararExpresiones(expresion, expresion2, rfp5))return false;
+                break;
             case 6: if(!compararExpresiones(expresion, expresion2, rfp6))return false;
+                break;
             case 7: if(!compararExpresiones(expresion, expresion2, rfp7))return false;
+                break;
                 
         }
         
@@ -87,25 +108,9 @@ public class Reglas {
             }
         }
         
+        
         return true;
         
     }
-    
-    public boolean  compararExpresiones(FBF expresion1, FBF expresion2, ArrayList<FBF> rfp){
-        if(compararArboles(expresion1, rfp.get(0))){
-            if(compararArboles(expresion2, rfp.get(1))){
-                return true;
-            }else {
-                return false;
-            }
-        } else if (compararArboles(expresion1, rfp.get(1))){
-            if(compararArboles(expresion2, rfp.get(0))){
-                return true;
-            }else {
-                return false;
-            }
-        }
-        return false;
-    }
-    
+      
 }
