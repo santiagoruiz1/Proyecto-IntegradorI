@@ -43,6 +43,21 @@ public class Reglas {
         
     }
     
+    public String modusPonems(String fbf1, String fbf2){
+        String[] fbf;
+        System.out.println("fbf1 : " + fbf1 + " fbf2: " + fbf2);
+        if(fbf1.contains("→")){
+            fbf= fbf1.split("→",2);
+            System.out.println("err:" + fbf[0]);
+            if(fbf2.equals(fbf[0])) return fbf[1];
+        }else if(fbf2.contains("→")){
+            fbf= fbf2.split("→",2);
+            System.out.println("err:" + fbf[0]);
+            if(fbf1.equals(fbf[0])) return fbf[1];
+        }
+         return null;
+    }
+    
     
     
     private boolean compararArboles(FBF regla, FBF expresion){

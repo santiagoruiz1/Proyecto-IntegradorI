@@ -8,10 +8,6 @@ package co.edu.udea.PI.logica;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- *
- * @author david
- */
 public class Axiomas {
     FBF axioma1;
     FBF axioma2;

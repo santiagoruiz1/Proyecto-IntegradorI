@@ -63,11 +63,6 @@
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="botonReiniciar" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="comboRegla" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -76,6 +71,8 @@
                               <Component id="comboReglaSusti" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="comboPaso" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="comboPaso1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -91,7 +88,7 @@
                               <Component id="butonSustituir" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -127,10 +124,11 @@
                   <Component id="comboPremisas" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboReglaSusti" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboPaso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboPaso1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelSust1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="textSust1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -346,14 +344,15 @@
     <Component class="javax.swing.JComboBox" name="comboRegla">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
+          <StringArray count="8">
             <StringItem index="0" value="Seleccione"/>
             <StringItem index="1" value="Premisa"/>
             <StringItem index="2" value="Sustitucion"/>
-            <StringItem index="3" value="Axioma 1"/>
-            <StringItem index="4" value="Axioma 2"/>
-            <StringItem index="5" value="Axioma 3"/>
-            <StringItem index="6" value="Axioma 4"/>
+            <StringItem index="3" value="Modus Ponems"/>
+            <StringItem index="4" value="Axioma 1"/>
+            <StringItem index="5" value="Axioma 2"/>
+            <StringItem index="6" value="Axioma 3"/>
+            <StringItem index="7" value="Axioma 4"/>
           </StringArray>
         </Property>
       </Properties>
@@ -482,6 +481,15 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butonSustituirActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboPaso1">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="Seleccione"/>
+          </StringArray>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

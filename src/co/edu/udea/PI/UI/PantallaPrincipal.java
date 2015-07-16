@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -74,6 +75,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         labelSust2 = new javax.swing.JLabel();
         textSust2 = new javax.swing.JTextField();
         butonSustituir = new javax.swing.JButton();
+        comboPaso1 = new javax.swing.JComboBox();
 
         jButton1.setText("jButton1");
 
@@ -217,7 +219,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             tablaDemostracion.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        comboRegla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Premisa", "Sustitucion", "Axioma 1", "Axioma 2", "Axioma 3", "Axioma 4" }));
+        comboRegla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Premisa", "Sustitucion", "Modus Ponems", "Axioma 1", "Axioma 2", "Axioma 3", "Axioma 4" }));
         comboRegla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboReglaActionPerformed(evt);
@@ -305,6 +307,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        comboPaso1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -335,10 +339,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3)
-                            .addComponent(botonReiniciar))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonReiniciar)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -346,7 +347,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(comboReglaSusti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(comboPaso1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelSust1)
@@ -357,7 +360,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                     .addComponent(textSust1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(butonSustituir)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap(36, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,10 +388,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboReglaSusti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboPaso1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelSust1)
                             .addComponent(textSust1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -536,7 +540,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(this,"Seleccione la justificación");
 //            error=true;
 //            return;
-//        }else if(!comboRegla.getSelectedItem().equals("Premisa") && comboPaso.getSelectedItem().equals("Seleccione") && 
+//        }else if(!comboRegla.getSelectedItem().equals("Premisa") && comboPaso.getSelectedItem().equals("Seleccione") &&
 //                !comboRegla.getSelectedItem().toString().contains("Axionama")) {
 //            JOptionPane.showMessageDialog(this,"Seleccione el paso");
 //            error=true;
@@ -563,9 +567,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         v = axiomas.validar(4, f);
                         break;
                 }
-            }else if(comboRegla.getSelectedItem().toString().contains("Sustitucion")){
-                
+            }else if(comboRegla.getSelectedItem().toString().contains("Modus Ponems")){
+                int paso1= Integer.parseInt(comboPaso.getSelectedItem().toString());
+                int paso2= Integer.parseInt(comboPaso1.getSelectedItem().toString());
+                String expresion1= tablaDemostracion.getValueAt(paso1-1, 1).toString();
+                String expresion2= tablaDemostracion.getValueAt(paso2-1, 1).toString();
+                String ponem= reglas.modusPonems(expresion1, expresion2);
+                if(ponem!=null){
+                    expresion= ponem;
+                    justificacion= "Modus Ponems entre "+ paso1 + " y " + paso2;
+                    JOptionPane.showMessageDialog(this, "todo wipi");
+                }else {
+                    error=true;
+                    JOptionPane.showMessageDialog(this, "no wipi");
+                }
             }
+            
             if(!error){
                 if(v){
                     textExpre1.setBackground(Color.GREEN);
@@ -633,6 +650,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             deshabilitarCombos(3);
         }else if(comboRegla.getSelectedItem().toString().contains("Sustitucion")){
             deshabilitarCombos(1);
+        }else if (comboRegla.getSelectedItem().equals("Modus Ponems")){
+            comboPaso1.removeAllItems();
+            for(int i=0; i<comboPaso.getItemCount(); i++){
+                comboPaso1.addItem(comboPaso.getItemAt(i));
+            }
         }
         
     }//GEN-LAST:event_comboReglaActionPerformed
@@ -755,8 +777,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(v){
-        expresion= expresion.replace(expresion2, expresion3);
-        agregarFBF(expresion,"Sustitucion en el paso: " + paso +  "con la regla" + comboReglaSusti.getSelectedItem());
+            expresion= expresion.replace(expresion2, expresion3);
+            agregarFBF(expresion,"Sustitucion en el paso: " + paso +  "con la regla" + comboReglaSusti.getSelectedItem());
             
             textSust1.setBackground(Color.GREEN);
         } else {
@@ -834,6 +856,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnNegacion;
     private javax.swing.JButton butonSustituir;
     private javax.swing.JComboBox comboPaso;
+    private javax.swing.JComboBox comboPaso1;
     private javax.swing.JComboBox comboPremisa;
     private javax.swing.JComboBox comboPremisas;
     private javax.swing.JComboBox comboRegla;
