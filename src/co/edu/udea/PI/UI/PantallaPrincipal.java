@@ -101,7 +101,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         btnNegacion.setText("¬");
         btnNegacion.setFocusable(false);
@@ -230,7 +230,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             tablaDemostracion.getColumnModel().getColumn(2).setHeaderValue("Justificacion");
         }
 
-        comboRegla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Premisa", "Sustitucion", "Modus Ponems", "Axioma 1", "Axioma 2", "Axioma 3", "Axioma 4", "Supuesto" }));
+        comboRegla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Premisa", "Sustitucion", "Modus Ponems", "Axioma 1", "Axioma 2", "Axioma 3", "Axioma 4" }));
         comboRegla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboReglaActionPerformed(evt);
