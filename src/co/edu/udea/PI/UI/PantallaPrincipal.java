@@ -101,7 +101,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnNegacion.setText("¬");
         btnNegacion.setFocusable(false);
@@ -230,7 +230,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             tablaDemostracion.getColumnModel().getColumn(2).setHeaderValue("Justificacion");
         }
 
-        comboRegla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Premisa", "Sustitucion", "Modus Ponems", "Axioma 1", "Axioma 2", "Axioma 3", "Axioma 4" }));
+        comboRegla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Premisa", "Sustitucion", "Modus Ponems", "Axioma 1", "Axioma 2", "Axioma 3", "Axioma 4", "Supuesto" }));
         comboRegla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboReglaActionPerformed(evt);
@@ -850,8 +850,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void botonComprobarDemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprobarDemActionPerformed
         try {
-            String expresion = tablaDemostracion.getValueAt(tablaDemostracion.getModel().getColumnCount()-1, 1).toString();
-            if(expresion.equals(hipotesis.getConse())){
+            int i =tablaDemostracion.getRowCount()-1;
+            String expresion = tablaDemostracion.getValueAt(i, 1).toString();
+            String tipoExpresion = tablaDemostracion.getValueAt(i, 2).toString();
+            if(expresion.equals(hipotesis.getConse()) && !tipoExpresion.contains("Supuesto")){
             JOptionPane.showMessageDialog(this, "La demostracion se realizo correctamente");
             deshabilitarComponentes();            
             }else{
