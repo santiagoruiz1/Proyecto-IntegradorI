@@ -9,6 +9,14 @@ public class Hipotesis {
     private ArrayList<FBF> consecuentes = new ArrayList();
     private String ante;
     private String conse;
+
+    public String getConse() {
+        return conse;
+    }
+
+    public void setConse(String conse) {
+        this.conse = conse;
+    }
     
     public Hipotesis(String expresion){
         
