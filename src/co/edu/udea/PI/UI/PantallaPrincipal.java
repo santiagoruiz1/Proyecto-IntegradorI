@@ -10,10 +10,15 @@ import co.edu.udea.PI.logica.FBF;
 import co.edu.udea.PI.logica.Hipotesis;
 import co.edu.udea.PI.logica.Reglas;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Insets;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -33,6 +38,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         deshabilitarComponentes();
         axiomas = new Axiomas();
         reglas= new Reglas();
+        botonIcono.setMargin(new Insets(0, 0, 0, 0));
+        botonIcono.setBorder(null);
+        try {
+            Image img = ImageIO.read(getClass().getResource("/resources/info2.png"));
+           
+            botonIcono.setIcon(new ImageIcon(img));
+            botonIcono.setSize(500, 50);
+        } catch (IOException ex) {
+        }
         
     }
     /**
@@ -77,6 +91,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         butonSustituir = new javax.swing.JButton();
         comboPaso1 = new javax.swing.JComboBox();
         botonComprobarDem = new javax.swing.JButton();
+        botonIcono = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -332,6 +347,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        botonIcono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIconoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -353,7 +374,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
                                 .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(comboReglaSusti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -411,7 +434,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(comboReglaSusti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboPaso1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonValidar))
+                    .addComponent(botonValidar)
+                    .addComponent(botonIcono))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSust1)
@@ -476,6 +500,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.botonValidar.setEnabled(false);
         comboPremisas.setVisible(false);
         comboReglaSusti.setVisible(false);
+        comboPaso1.setVisible(false);
+        comboPaso.setVisible(false);
         textSust1.setVisible(false);
         textSust2.setVisible(false);
         labelSust1.setVisible(false);
@@ -506,6 +532,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             case 1: //Sust
                 comboPremisas.setVisible(false);
                 comboPaso.setVisible(true);
+                comboPaso.setEnabled(true);
                 comboPaso1.setVisible(false);
                 comboReglaSusti.setVisible(true);
                 textExpre1.setEnabled(false);
@@ -571,25 +598,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         boolean error=false;
         String expresion = textExpre1.getText();
         String justificacion= comboRegla.getSelectedItem().toString();
-        
-        
-//        if (comboRegla.getSelectedItem().equals("Premisa") && comboPremisas.getSelectedItem().equals("Seleccione")) {
-//            JOptionPane.showMessageDialog(this,"Seleccione la premisa");
-//            error=true;
-//            return;
-//        } else if (comboRegla.getSelectedItem().equals("Seleccione")) {
-//            JOptionPane.showMessageDialog(this,"Seleccione la justificación");
-//            error=true;
-//            return;
-//        }else if(!comboRegla.getSelectedItem().equals("Premisa") && comboPaso.getSelectedItem().equals("Seleccione") &&
-//                !comboRegla.getSelectedItem().toString().contains("Axionama")) {
-//            JOptionPane.showMessageDialog(this,"Seleccione el paso");
-//            error=true;
-//            return;
-//        }
+        String stringValidar="";
+        stringValidar= validar();
+        if(!stringValidar.equals("")){
+            JOptionPane.showMessageDialog(this, stringValidar);
+            return;
+        }
         try {
             if(justificacion.contains("Modus Ponems"))expresion = "a";
-                
+            
             FBF f = new FBF(expresion);
             boolean v = true;
             
@@ -636,7 +653,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
             
             
-            
         } catch (Exception e) {
             //e.printStackTrace();
             textExpre1.setBackground(Color.red);
@@ -645,12 +661,39 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.comboRegla.setSelectedIndex(0);
         this.comboPaso.setSelectedIndex(0);
         this.comboPaso1.setSelectedIndex(0);
-        comboPaso.setVisible(true);
-        comboPaso1.setVisible(true);
         this.comboPremisas.setSelectedIndex(0);
         
     }//GEN-LAST:event_botonValidarActionPerformed
-
+    
+    public String validar(){
+        String regla= comboRegla.getSelectedItem().toString();
+        System.out.println("" + regla);
+        if(regla.equals("Seleccione")){
+            return "Seleccione una regla";
+        } else if (regla.equals("Premisa")){
+            if(comboPremisas.getSelectedItem().equals("Seleccione")){
+                return "Seleccione la premisa";
+            }
+        } else if (regla.equals("Sustitucion")){
+            if(comboReglaSusti.getSelectedItem().equals("Seleccione")){
+                return "Seleccione la regla de sustitucion";
+            } else if(comboPaso.getSelectedItem().equals("Seleccione")){
+                return "Seleccione el paso al cual desea aplicarle la sustitucion";
+            } else if(textSust1.getText().equals("")|| textSust2.getText().equals("")){
+                return "Ingrese las FbFs";
+            }
+        } else if(regla.contains("Axioma")|| regla.equals("Supuesto")){
+            if(textExpre1.getText().equals("")){
+                return "Ingrese la expresion";
+            }
+        } else if(regla.equals("Modus Ponems")){
+            if(comboPaso.getSelectedItem().equals("Seleccione") || comboPaso1.getSelectedItem().equals("Seleccione")){
+                return "Seleccione los pasos";
+            }
+        }
+        
+        return "";
+    }
     private void btnNegacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNegacionActionPerformed
         
         this.agregarOperandos('¬');
@@ -795,6 +838,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void butonSustituirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonSustituirActionPerformed
         boolean v;
         v= false;
+        String stringValidar="";
+        stringValidar= validar();
+        if(!stringValidar.equals("")){
+            JOptionPane.showMessageDialog(this, stringValidar);
+            return;
+        }
         int paso= Integer.parseInt(comboPaso.getSelectedItem().toString());
         String expresion= tablaDemostracion.getValueAt(paso-1, 1).toString();
         String expresion2 = textSust1.getText();
@@ -824,7 +873,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         }
         if(v){
             expresion= expresion.replace(expresion2, expresion3);
-            agregarFBF(expresion,"Sustitucion en el paso: " + paso +  "con la regla" + comboReglaSusti.getSelectedItem());
+            agregarFBF(expresion,"Sustitucion en el paso: " + paso +  " \n con la regla" + comboReglaSusti.getSelectedItem());
             
             textSust1.setBackground(Color.GREEN);
         } else {
@@ -854,8 +903,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             String expresion = tablaDemostracion.getValueAt(i, 1).toString();
             String tipoExpresion = tablaDemostracion.getValueAt(i, 2).toString();
             if(expresion.equals(hipotesis.getConse()) && !tipoExpresion.contains("Supuesto")){
-            JOptionPane.showMessageDialog(this, "La demostracion se realizo correctamente");
-            deshabilitarComponentes();            
+                JOptionPane.showMessageDialog(this, "La demostracion se realizo correctamente");
+                deshabilitarComponentes();
             }else{
                 JOptionPane.showMessageDialog(this, "La demostracion esta inconclusa");
             }
@@ -871,6 +920,40 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void comboPasoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPasoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboPasoActionPerformed
+
+    private void botonIconoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIconoActionPerformed
+        String regla= comboRegla.getSelectedItem().toString();
+        String mensaje="";
+        switch(regla){
+            case "Axioma 1": mensaje= "Idempotencia: p∨p→p";
+                break;
+            case "Axioma 2": mensaje= "Adjuncion: p→p∨q";
+                break;    
+            case "Axioma 3": mensaje= "Conmutatividad: p∨q→q∨p";
+                break;
+            case "Axioma 4": mensaje= "Adicion: (p→q)→(r∨p→r∨q)";
+                break;
+            case "Sustitucion": if(comboReglaSusti.getSelectedItem().equals("RFP5")){
+                mensaje ="Definición de formas proposicionales conjuntivas \n "
+                        + "Sean r y s fbfs, entonces la fórmula r∧s se \n"
+                        + "considera bien formada y se define como: ¬(¬r∨¬s)";
+            }else if(comboReglaSusti.getSelectedItem().equals("RFP6")){
+                mensaje ="Definición de formas proposicionales condicionales \n "
+                        + "Sean r y s fbfs, entonces la fórmula r→s se \n"
+                        + "considera bien formada y se define como: ¬r∨s)";
+                
+            }else if(comboReglaSusti.getSelectedItem().equals("RFP5")){
+                mensaje ="Definición de formas proposicionales bicondicionales \n "
+                        + "Sean r y s fbfs, entonces la fórmula r↔s se \n"
+                        + "considera bien formada y se define como: (r→s)∧(s→r)";
+                
+            }
+            break;
+            case "Modus Ponems": mensaje="p, p→q ⊢q";
+                    break;
+        }
+        JOptionPane.showMessageDialog(this, mensaje);
+    }//GEN-LAST:event_botonIconoActionPerformed
     
     /**
      * @param args the command line arguments
@@ -916,6 +999,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonComprobarDem;
     private javax.swing.JButton botonFijar;
+    private javax.swing.JButton botonIcono;
     private javax.swing.JButton botonReiniciar;
     private javax.swing.JButton botonValidar;
     private javax.swing.JButton btnAbrePar;

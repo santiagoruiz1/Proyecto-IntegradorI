@@ -49,7 +49,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="comboRegla" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="botonIcono" min="-2" pref="22" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="comboPremisas" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="comboReglaSusti" min="-2" max="-2" attributes="0"/>
@@ -122,6 +124,7 @@
                   <Component id="comboPaso" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboPaso1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonValidar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonIcono" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -491,6 +494,11 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonComprobarDemActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonIcono">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonIconoActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
