@@ -42,26 +42,7 @@
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="textExpre1" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="comboRegla" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="botonIcono" min="-2" pref="22" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="comboPremisas" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="comboReglaSusti" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="comboPaso" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="comboPaso1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="botonValidar" min="-2" pref="71" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
@@ -69,6 +50,32 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="botonFijar" min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="comboRegla" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="botonIcono" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="comboPremisas" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="comboReglaSusti" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="labelPasos" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="textPasos" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="botonValidar" min="-2" pref="71" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="textExpre1" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -88,11 +95,14 @@
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="botonReiniciar" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="726" max="-2" attributes="0"/>
+                          <Component id="botonComprobarDem" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="botonComprobarDem" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboPaso" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="botonAñadirPaso" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -117,16 +127,26 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="comboRegla" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="comboPremisas" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="comboReglaSusti" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="comboPaso" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="comboPaso1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botonValidar" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="botonIcono" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="comboRegla" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboPremisas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboReglaSusti" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botonValidar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="comboPaso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonAñadirPaso" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelPasos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textPasos" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="66" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelSust1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="textSust1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -149,6 +169,7 @@
               <Component id="botonComprobarDem" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="botonReiniciar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -479,15 +500,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butonSustituirActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboPaso1">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="Seleccione"/>
-          </StringArray>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="botonComprobarDem">
       <Properties>
         <Property name="text" type="java.lang.String" value="Comprobar demostraci&#xf3;n"/>
@@ -499,6 +511,21 @@
     <Component class="javax.swing.JButton" name="botonIcono">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonIconoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelPasos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pasos:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textPasos">
+    </Component>
+    <Component class="javax.swing.JButton" name="botonA&#xf1;adirPaso">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="A&#xf1;adir Paso"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonA&#xf1;adirPasoActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

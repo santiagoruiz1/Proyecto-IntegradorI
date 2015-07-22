@@ -42,7 +42,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         botonIcono.setBorder(null);
         try {
             Image img = ImageIO.read(getClass().getResource("/resources/info2.png"));
-           
+            
             botonIcono.setIcon(new ImageIcon(img));
             botonIcono.setSize(500, 50);
         } catch (IOException ex) {
@@ -89,9 +89,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         labelSust2 = new javax.swing.JLabel();
         textSust2 = new javax.swing.JTextField();
         butonSustituir = new javax.swing.JButton();
-        comboPaso1 = new javax.swing.JComboBox();
         botonComprobarDem = new javax.swing.JButton();
         botonIcono = new javax.swing.JButton();
+        labelPasos = new javax.swing.JLabel();
+        textPasos = new javax.swing.JTextField();
+        botonAñadirPaso = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -116,7 +118,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         btnNegacion.setText("¬");
         btnNegacion.setFocusable(false);
@@ -338,8 +340,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        comboPaso1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
-
         botonComprobarDem.setText("Comprobar demostración");
         botonComprobarDem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,6 +350,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         botonIcono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonIconoActionPerformed(evt);
+            }
+        });
+
+        labelPasos.setText("Pasos:");
+
+        botonAñadirPaso.setText("Añadir Paso");
+        botonAñadirPaso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAñadirPasoActionPerformed(evt);
             }
         });
 
@@ -368,30 +377,33 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         .addComponent(botonAñadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(9, 9, 9))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(textExpre1)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboReglaSusti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboPaso1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(text1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(botonFijar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(botonIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(comboReglaSusti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelPasos)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textPasos)))
+                                .addGap(29, 29, 29)
+                                .addComponent(botonValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textExpre1)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,10 +418,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                         .addComponent(butonSustituir))))
                             .addComponent(jLabel1)
                             .addComponent(botonReiniciar)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonComprobarDem))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonComprobarDem)
+                        .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonAñadirPaso)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -428,15 +443,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonIcono)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboReglaSusti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonValidar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboRegla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboPremisas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboReglaSusti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboPaso1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonValidar)
-                    .addComponent(botonIcono))
-                .addGap(18, 18, 18)
+                    .addComponent(botonAñadirPaso))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPasos)
+                    .addComponent(textPasos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSust1)
                     .addComponent(textSust1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -456,7 +478,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonComprobarDem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonReiniciar))
+                .addComponent(botonReiniciar)
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -495,12 +518,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public void deshabilitarComponentes(){
         this.textExpre1.setEnabled(false);
         this.comboPaso.setEnabled(false);
-        this.comboPaso1.setEnabled(false);
         this.comboRegla.setEnabled(false);
         this.botonValidar.setEnabled(false);
         comboPremisas.setVisible(false);
         comboReglaSusti.setVisible(false);
-        comboPaso1.setVisible(false);
         comboPaso.setVisible(false);
         textSust1.setVisible(false);
         textSust2.setVisible(false);
@@ -533,7 +554,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 comboPremisas.setVisible(false);
                 comboPaso.setVisible(true);
                 comboPaso.setEnabled(true);
-                comboPaso1.setVisible(false);
                 comboReglaSusti.setVisible(true);
                 textExpre1.setEnabled(false);
                 botonValidar.setEnabled(false);
@@ -546,7 +566,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             case 2: //Premisa
                 comboPremisas.setVisible(true);
                 comboPaso.setVisible(false);
-                comboPaso1.setVisible(false);
                 comboReglaSusti.setVisible(false);
                 textExpre1.setEnabled(true);
                 botonValidar.setEnabled(true);
@@ -559,7 +578,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             case 3: //Axiomas
                 comboPremisas.setVisible(false);
                 comboPaso.setVisible(false);
-                comboPaso1.setVisible(false);
                 comboReglaSusti.setVisible(false);
                 textExpre1.setEnabled(true);
                 botonValidar.setEnabled(true);
@@ -572,9 +590,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             case 4: //Modus ponem
                 comboPremisas.setVisible(false);
                 comboPaso.setEnabled(true);
-                comboPaso1.setEnabled(true);
                 comboPaso.setVisible(true);
-                comboPaso1.setVisible(true);
                 comboReglaSusti.setVisible(false);
                 textExpre1.setEnabled(false);
                 botonValidar.setEnabled(true);
@@ -629,18 +645,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 }
             }else if(comboRegla.getSelectedItem().toString().contains("Modus Ponems")){
                 int paso1= Integer.parseInt(comboPaso.getSelectedItem().toString());
-                int paso2= Integer.parseInt(comboPaso1.getSelectedItem().toString());
                 String expresion1= tablaDemostracion.getValueAt(paso1-1, 1).toString();
-                String expresion2= tablaDemostracion.getValueAt(paso2-1, 1).toString();
-                String ponem= reglas.modusPonems(expresion1, expresion2);
-                if(ponem!=null){
-                    expresion= ponem;
-                    justificacion= "Modus Ponems entre "+ paso1 + " y " + paso2;
-                    //JOptionPane.showMessageDialog(this, "todo wipi");
-                }else {
-                    error=true;
-                    JOptionPane.showMessageDialog(this, "No es posible realizar modus ponems entre los pasos seleccionados");
-                }
+//                String expresion2= tablaDemostracion.getValueAt(paso2-1, 1).toString();
+//                String ponem= reglas.modusPonems(expresion1, expresion2);
+//                if(ponem!=null){
+//                    expresion= ponem;
+//                    justificacion= "Modus Ponems entre "+ paso1 + " y ";
+//                    //JOptionPane.showMessageDialog(this, "todo wipi");
+//                }else {
+//                    error=true;
+//                    JOptionPane.showMessageDialog(this, "No es posible realizar modus ponems entre los pasos seleccionados");
+//                }
             }
             
             if(!error){
@@ -660,7 +675,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.comboPremisas.setVisible(false);
         this.comboRegla.setSelectedIndex(0);
         this.comboPaso.setSelectedIndex(0);
-        this.comboPaso1.setSelectedIndex(0);
         this.comboPremisas.setSelectedIndex(0);
         
     }//GEN-LAST:event_botonValidarActionPerformed
@@ -687,7 +701,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 return "Ingrese la expresion";
             }
         } else if(regla.equals("Modus Ponems")){
-            if(comboPaso.getSelectedItem().equals("Seleccione") || comboPaso1.getSelectedItem().equals("Seleccione")){
+            if(comboPaso.getSelectedItem().equals("Seleccione") ){
                 return "Seleccione los pasos";
             }
         }
@@ -740,10 +754,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             deshabilitarCombos(1);
         }else if (comboRegla.getSelectedItem().equals("Modus Ponems")){
             deshabilitarCombos(4);
-            comboPaso1.removeAllItems();
-            for(int i=0; i<comboPaso.getItemCount(); i++){
-                comboPaso1.addItem(comboPaso.getItemAt(i));
-            }
         }
         
     }//GEN-LAST:event_comboReglaActionPerformed
@@ -910,11 +920,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "La demostracion esta inconclusa");
-        }
-// TODO add your handling code here:
-        
-        
-        
+        }   
     }//GEN-LAST:event_botonComprobarDemActionPerformed
 
     private void comboPasoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPasoActionPerformed
@@ -926,13 +932,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         String mensaje="";
         switch(regla){
             case "Axioma 1": mensaje= "Idempotencia: p∨p→p";
-                break;
+            break;
             case "Axioma 2": mensaje= "Adjuncion: p→p∨q";
-                break;    
+            break;
             case "Axioma 3": mensaje= "Conmutatividad: p∨q→q∨p";
-                break;
+            break;
             case "Axioma 4": mensaje= "Adicion: (p→q)→(r∨p→r∨q)";
-                break;
+            break;
             case "Sustitucion": if(comboReglaSusti.getSelectedItem().equals("RFP5")){
                 mensaje ="Definición de formas proposicionales conjuntivas \n "
                         + "Sean r y s fbfs, entonces la fórmula r∧s se \n"
@@ -942,7 +948,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         + "Sean r y s fbfs, entonces la fórmula r→s se \n"
                         + "considera bien formada y se define como: ¬r∨s)";
                 
-            }else if(comboReglaSusti.getSelectedItem().equals("RFP5")){
+            }else if(comboReglaSusti.getSelectedItem().equals("RFP7")){
                 mensaje ="Definición de formas proposicionales bicondicionales \n "
                         + "Sean r y s fbfs, entonces la fórmula r↔s se \n"
                         + "considera bien formada y se define como: (r→s)∧(s→r)";
@@ -950,10 +956,28 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
             break;
             case "Modus Ponems": mensaje="p, p→q ⊢q";
-                    break;
+            break;
         }
         JOptionPane.showMessageDialog(this, mensaje);
     }//GEN-LAST:event_botonIconoActionPerformed
+
+    private void botonAñadirPasoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirPasoActionPerformed
+        String textoPasos= textPasos.getText() ;
+        int paso;
+        if(!comboPaso.getSelectedItem().equals("Seleccione")){
+            paso= Integer.parseInt(comboPaso.getSelectedItem().toString());
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un paso");
+            return;
+        }
+        
+        if(textoPasos.length()==0){
+            textPasos.setText("Entre " + tablaDemostracion.getValueAt(paso-1, 1).toString());
+        }else {
+            textPasos.setText(textPasos.getText() + "," + tablaDemostracion.getValueAt(paso-1, 1).toString());
+        }
+        
+    }//GEN-LAST:event_botonAñadirPasoActionPerformed
     
     /**
      * @param args the command line arguments
@@ -997,6 +1021,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAñadir;
+    private javax.swing.JButton botonAñadirPaso;
     private javax.swing.JButton botonComprobarDem;
     private javax.swing.JButton botonFijar;
     private javax.swing.JButton botonIcono;
@@ -1011,7 +1036,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnNegacion;
     private javax.swing.JButton butonSustituir;
     private javax.swing.JComboBox comboPaso;
-    private javax.swing.JComboBox comboPaso1;
     private javax.swing.JComboBox comboPremisa;
     private javax.swing.JComboBox comboPremisas;
     private javax.swing.JComboBox comboRegla;
@@ -1022,12 +1046,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelPasos;
     private javax.swing.JLabel labelSust1;
     private javax.swing.JLabel labelSust2;
     private javax.swing.JTable tablaDemostracion;
     private javax.swing.JTextField text1;
     private javax.swing.JTextField textExpre1;
     private javax.swing.JTextField textHip;
+    private javax.swing.JTextField textPasos;
     private javax.swing.JTextField textSust1;
     private javax.swing.JTextField textSust2;
     // End of variables declaration//GEN-END:variables

@@ -55,7 +55,7 @@ public class Reglas {
             System.out.println("err:" + fbf[0]);
             if(fbf1.equals(fbf[0])) return fbf[1];
         }
-         return null;
+        return null;
     }
     
     
@@ -104,11 +104,11 @@ public class Reglas {
         
         switch (regla){
             case 5: if(!compararExpresiones(expresion, expresion2, rfp5))return false;
-                break;
+            break;
             case 6: if(!compararExpresiones(expresion, expresion2, rfp6))return false;
-                break;
+            break;
             case 7: if(!compararExpresiones(expresion, expresion2, rfp7))return false;
-                break;
+            break;
                 
         }
         
@@ -127,5 +127,5 @@ public class Reglas {
         return true;
         
     }
-      
+    
 }
